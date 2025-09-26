@@ -1,17 +1,17 @@
 <?php
 /**
  * PaintYard Products API
- * API для роботи з товарами
+ * API РґР»СЏ СЂРѕР±РѕС‚Рё Р· С‚РѕРІР°СЂР°РјРё
  */
 
 define('API_ACCESS', true);
 require_once 'config.php';
 
-// Отримуємо метод запиту
+// РћС‚СЂРёРјСѓС”РјРѕ РјРµС‚РѕРґ Р·Р°РїРёС‚Сѓ
 $method = $_SERVER['REQUEST_METHOD'];
 $input = json_decode(file_get_contents('php://input'), true);
 
-// Маршрутизація запитів
+// РњР°СЂС€СЂСѓС‚РёР·Р°С†С–СЏ Р·Р°РїРёС‚С–РІ
 switch ($method) {
     case 'GET':
         handleGet();
@@ -30,7 +30,7 @@ switch ($method) {
 }
 
 /**
- * Обробка GET запитів (отримання товарів)
+ * РћР±СЂРѕР±РєР° GET Р·Р°РїРёС‚С–РІ (РѕС‚СЂРёРјР°РЅРЅСЏ С‚РѕРІР°СЂС–РІ)
  */
 function handleGet() {
     $data = readJsonFile(PRODUCTS_DB);
@@ -39,7 +39,7 @@ function handleGet() {
         jsonResponse($data, 500);
     }
     
-    // Параметри пошуку та фільтрації
+    // РџР°СЂР°РјРµС‚СЂРё РїРѕС€СѓРєСѓ С‚Р° С„С–Р»СЊС‚СЂР°С†С–С—
     $searchTerm = $_GET['search'] ?? '';
     $brand = $_GET['brand'] ?? '';
     $category = $_GET['category'] ?? '';
@@ -49,7 +49,7 @@ function handleGet() {
     
     $products = $data['products'];
     
-    // Фільтрація по пошуковому терміну
+    // Р¤С–Р»СЊС‚СЂР°С†С–СЏ РїРѕ РїРѕС€СѓРєРѕРІРѕРјСѓ С‚РµСЂРјС–РЅСѓ
     if (!empty($searchTerm)) {
         $products = array_filter($products, function($product) use ($searchTerm) {
             return stripos($product['name'], $searchTerm) !== false ||
@@ -57,21 +57,21 @@ function handleGet() {
         });
     }
     
-    // Фільтрація по бренду
+    // Р¤С–Р»СЊС‚СЂР°С†С–СЏ РїРѕ Р±СЂРµРЅРґСѓ
     if (!empty($brand)) {
         $products = array_filter($products, function($product) use ($brand) {
             return $product['brand'] === $brand;
         });
     }
     
-    // Фільтрація по категорії
+    // Р¤С–Р»СЊС‚СЂР°С†С–СЏ РїРѕ РєР°С‚РµРіРѕСЂС–С—
     if (!empty($category)) {
         $products = array_filter($products, function($product) use ($category) {
             return $product['category'] === $category;
         });
     }
     
-    // Фільтрація по наявності
+    // Р¤С–Р»СЊС‚СЂР°С†С–СЏ РїРѕ РЅР°СЏРІРЅРѕСЃС‚С–
     if ($inStock === 'true') {
         $products = array_filter($products, function($product) {
             return $product['inStock'] === true && $product['quantity'] > 0;
@@ -82,7 +82,7 @@ function handleGet() {
         });
     }
     
-    // Сортування (за замовчуванням по даті оновлення)
+    // РЎРѕСЂС‚СѓРІР°РЅРЅСЏ (Р·Р° Р·Р°РјРѕРІС‡СѓРІР°РЅРЅСЏРј РїРѕ РґР°С‚С– РѕРЅРѕРІР»РµРЅРЅСЏ)
     $sortBy = $_GET['sort'] ?? 'updatedAt';
     $sortOrder = $_GET['order'] ?? 'desc';
     
@@ -95,13 +95,13 @@ function handleGet() {
         return $sortOrder === 'desc' ? -$comparison : $comparison;
     });
     
-    // Пагінація
+    // РџР°РіС–РЅР°С†С–СЏ
     $totalProducts = count($products);
     if ($limit > 0) {
         $products = array_slice($products, $offset, $limit);
     }
     
-    // Перевіряємо чи запитуються дані одного товару
+    // РџРµСЂРµРІС–СЂСЏС”РјРѕ С‡Рё Р·Р°РїРёС‚СѓСЋС‚СЊСЃСЏ РґР°РЅС– РѕРґРЅРѕРіРѕ С‚РѕРІР°СЂСѓ
     if (isset($_GET['id'])) {
         $productId = (int)$_GET['id'];
         $product = array_filter($products, function($p) use ($productId) {
@@ -133,14 +133,14 @@ function handleGet() {
 }
 
 /**
- * Обробка POST запитів (додавання товару)
+ * РћР±СЂРѕР±РєР° POST Р·Р°РїРёС‚С–РІ (РґРѕРґР°РІР°РЅРЅСЏ С‚РѕРІР°СЂСѓ)
  */
 function handlePost($input) {
     if (!$input) {
         jsonResponse(['error' => 'Invalid input data'], 400);
     }
     
-    // Валідація обов'язкових полів
+    // Р’Р°Р»С–РґР°С†С–СЏ РѕР±РѕРІ'СЏР·РєРѕРІРёС… РїРѕР»С–РІ
     $requiredFields = ['name', 'brand', 'package', 'price'];
     $errors = validateRequired($input, $requiredFields);
     
@@ -148,10 +148,10 @@ function handlePost($input) {
         jsonResponse(['error' => 'Validation failed', 'details' => $errors], 400);
     }
     
-    // Санітізація даних
+    // РЎР°РЅС–С‚С–Р·Р°С†С–СЏ РґР°РЅРёС…
     $input = sanitizeData($input);
     
-    // Додаткова валідація
+    // Р”РѕРґР°С‚РєРѕРІР° РІР°Р»С–РґР°С†С–СЏ
     if (!is_numeric($input['price']) || $input['price'] <= 0) {
         jsonResponse(['error' => 'Price must be a positive number'], 400);
     }
@@ -160,13 +160,13 @@ function handlePost($input) {
         jsonResponse(['error' => 'Invalid brand. Allowed: teknos, aura'], 400);
     }
     
-    // Читаємо поточні дані
+    // Р§РёС‚Р°С”РјРѕ РїРѕС‚РѕС‡РЅС– РґР°РЅС–
     $data = readJsonFile(PRODUCTS_DB);
     if (isset($data['error'])) {
         jsonResponse($data, 500);
     }
     
-    // Створюємо новий товар
+    // РЎС‚РІРѕСЂСЋС”РјРѕ РЅРѕРІРёР№ С‚РѕРІР°СЂ
     $newProduct = [
         'id' => (int)generateId(),
         'name' => $input['name'],
@@ -183,12 +183,12 @@ function handlePost($input) {
         'updatedAt' => date('c')
     ];
     
-    // Додаємо товар до масиву
+    // Р”РѕРґР°С”РјРѕ С‚РѕРІР°СЂ РґРѕ РјР°СЃРёРІСѓ
     $data['products'][] = $newProduct;
     $data['totalProducts'] = count($data['products']);
     $data['lastUpdated'] = date('c');
     
-    // Зберігаємо дані
+    // Р—Р±РµСЂС–РіР°С”РјРѕ РґР°РЅС–
     if (!writeJsonFile(PRODUCTS_DB, $data)) {
         jsonResponse(['error' => 'Failed to save product'], 500);
     }
@@ -203,7 +203,7 @@ function handlePost($input) {
 }
 
 /**
- * Обробка PUT запитів (оновлення товару)
+ * РћР±СЂРѕР±РєР° PUT Р·Р°РїРёС‚С–РІ (РѕРЅРѕРІР»РµРЅРЅСЏ С‚РѕРІР°СЂСѓ)
  */
 function handlePut($input) {
     if (!isset($_GET['id'])) {
@@ -216,13 +216,13 @@ function handlePut($input) {
         jsonResponse(['error' => 'Invalid input data'], 400);
     }
     
-    // Читаємо поточні дані
+    // Р§РёС‚Р°С”РјРѕ РїРѕС‚РѕС‡РЅС– РґР°РЅС–
     $data = readJsonFile(PRODUCTS_DB);
     if (isset($data['error'])) {
         jsonResponse($data, 500);
     }
     
-    // Знаходимо товар
+    // Р—РЅР°С…РѕРґРёРјРѕ С‚РѕРІР°СЂ
     $productIndex = null;
     foreach ($data['products'] as $index => $product) {
         if ($product['id'] === $productId) {
@@ -235,13 +235,13 @@ function handlePut($input) {
         jsonResponse(['error' => 'Product not found'], 404);
     }
     
-    // Санітізація даних
+    // РЎР°РЅС–С‚С–Р·Р°С†С–СЏ РґР°РЅРёС…
     $input = sanitizeData($input);
     
-    // Оновлюємо товар
+    // РћРЅРѕРІР»СЋС”РјРѕ С‚РѕРІР°СЂ
     $updatedProduct = $data['products'][$productIndex];
     
-    // Оновлюємо тільки передані поля
+    // РћРЅРѕРІР»СЋС”РјРѕ С‚С–Р»СЊРєРё РїРµСЂРµРґР°РЅС– РїРѕР»СЏ
     $allowedFields = ['name', 'brand', 'category', 'package', 'price', 'description', 'features', 'image', 'inStock', 'quantity'];
     
     foreach ($allowedFields as $field) {
@@ -250,7 +250,7 @@ function handlePut($input) {
         }
     }
     
-    // Валідація оновлених даних
+    // Р’Р°Р»С–РґР°С†С–СЏ РѕРЅРѕРІР»РµРЅРёС… РґР°РЅРёС…
     if (isset($input['price']) && (!is_numeric($input['price']) || $input['price'] <= 0)) {
         jsonResponse(['error' => 'Price must be a positive number'], 400);
     }
@@ -261,7 +261,7 @@ function handlePut($input) {
     
     $updatedProduct['updatedAt'] = date('c');
     
-    // Зберігаємо оновлений товар
+    // Р—Р±РµСЂС–РіР°С”РјРѕ РѕРЅРѕРІР»РµРЅРёР№ С‚РѕРІР°СЂ
     $data['products'][$productIndex] = $updatedProduct;
     $data['lastUpdated'] = date('c');
     
@@ -279,7 +279,7 @@ function handlePut($input) {
 }
 
 /**
- * Обробка DELETE запитів (видалення товару)
+ * РћР±СЂРѕР±РєР° DELETE Р·Р°РїРёС‚С–РІ (РІРёРґР°Р»РµРЅРЅСЏ С‚РѕРІР°СЂСѓ)
  */
 function handleDelete() {
     if (!isset($_GET['id'])) {
@@ -288,13 +288,13 @@ function handleDelete() {
     
     $productId = (int)$_GET['id'];
     
-    // Читаємо поточні дані
+    // Р§РёС‚Р°С”РјРѕ РїРѕС‚РѕС‡РЅС– РґР°РЅС–
     $data = readJsonFile(PRODUCTS_DB);
     if (isset($data['error'])) {
         jsonResponse($data, 500);
     }
     
-    // Знаходимо та видаляємо товар
+    // Р—РЅР°С…РѕРґРёРјРѕ С‚Р° РІРёРґР°Р»СЏС”РјРѕ С‚РѕРІР°СЂ
     $productFound = false;
     $productName = '';
     
@@ -311,7 +311,7 @@ function handleDelete() {
         jsonResponse(['error' => 'Product not found'], 404);
     }
     
-    // Переіндексуємо масив
+    // РџРµСЂРµС–РЅРґРµРєСЃСѓС”РјРѕ РјР°СЃРёРІ
     $data['products'] = array_values($data['products']);
     $data['totalProducts'] = count($data['products']);
     $data['lastUpdated'] = date('c');
