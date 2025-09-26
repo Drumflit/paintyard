@@ -1,6 +1,6 @@
 <?php
 /**
- * PaintYard Articles API
+ * МАЛЯРНИЙ Articles API
  * API для роботи зі статтями
  */
 
