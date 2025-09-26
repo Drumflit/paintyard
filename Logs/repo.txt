@@ -1,2 +1,0 @@
-https://github.com/Drumflit/paintyard.git
-git@github.com:Drumflit/paintyard.git
