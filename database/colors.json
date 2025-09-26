@@ -1,0 +1,324 @@
+{
+  "colorPalettes": {
+    "popular": {
+      "name": "Популярні кольори",
+      "colors": [
+        {
+          "id": "white-classic",
+          "name": "Класичний білий",
+          "hex": "#FFFFFF",
+          "rgb": "rgb(255, 255, 255)",
+          "description": "Чистий білий колір, ідеальний для створення світлого та просторого інтер'єру",
+          "category": "neutrals",
+          "popularity": 95,
+          "applications": ["стіни", "стеля", "меблі"],
+          "rooms": ["всі кімнати"]
+        },
+        {
+          "id": "warm-gray",
+          "name": "Теплий сірий",
+          "hex": "#8B8680",
+          "rgb": "rgb(139, 134, 128)",
+          "description": "Сірий з легким бежевим відтінком, створює затишну атмосферу",
+          "category": "neutrals", 
+          "popularity": 88,
+          "applications": ["стіни", "меблі"],
+          "rooms": ["вітальня", "спальня", "кабінет"]
+        },
+        {
+          "id": "soft-beige",
+          "name": "М'який бежевий",
+          "hex": "#F5F5DC",
+          "rgb": "rgb(245, 245, 220)",
+          "description": "Теплий бежевий відтінок, універсальний для будь-якого інтер'єру",
+          "category": "neutrals",
+          "popularity": 82,
+          "applications": ["стіни", "текстиль"],
+          "rooms": ["спальня", "вітальня", "дитяча"]
+        },
+        {
+          "id": "navy-blue",
+          "name": "Морський синій",
+          "hex": "#1E3A8A",
+          "rgb": "rgb(30, 58, 138)",
+          "description": "Глибокий синій колір, додає елегантності та стабільності",
+          "category": "cool",
+          "popularity": 76,
+          "applications": ["акцентна стіна", "меблі"],
+          "rooms": ["спальня", "кабінет", "ванна"]
+        },
+        {
+          "id": "sage-green",
+          "name": "Шавлієво-зелений",
+          "hex": "#87A96B",
+          "rgb": "rgb(135, 169, 107)", 
+          "description": "М'який зелений з сірими нотками, створює природну атмосферу",
+          "category": "cool",
+          "popularity": 79,
+          "applications": ["стіни", "акценти"],
+          "rooms": ["спальня", "ванна", "кухня"]
+        }
+      ]
+    },
+    "trendy2024": {
+      "name": "Тренди 2024",
+      "colors": [
+        {
+          "id": "terracotta", 
+          "name": "Терракота",
+          "hex": "#D2691E",
+          "rgb": "rgb(210, 105, 30)",
+          "description": "Теплий червонувато-коричневий, головний тренд року",
+          "category": "warm",
+          "popularity": 73,
+          "applications": ["акцентна стіна", "декор"],
+          "rooms": ["вітальня", "їдальня", "спальня"]
+        },
+        {
+          "id": "dusty-blue",
+          "name": "Запилений блакитний", 
+          "hex": "#6B9BD1",
+          "rgb": "rgb(107, 155, 209)",
+          "description": "Приглушений блакитний, елегантний та спокійний",
+          "category": "cool", 
+          "popularity": 68,
+          "applications": ["стіни", "текстиль"],
+          "rooms": ["спальня", "ванна", "дитяча"]
+        },
+        {
+          "id": "ochre-yellow",
+          "name": "Охра",
+          "hex": "#CC7722",
+          "rgb": "rgb(204, 119, 34)",
+          "description": "Природний жовто-коричневий пігмент, теплий та затишний",
+          "category": "warm",
+          "popularity": 65,
+          "applications": ["стіни", "акценти"],
+          "rooms": ["кухня", "вітальня", "передпокій"]
+        },
+        {
+          "id": "forest-green",
+          "name": "Лісовий зелений",
+          "hex": "#355E3B", 
+          "rgb": "rgb(53, 94, 59)",
+          "description": "Глибокий зелений, створює відчуття природи та стабільності",
+          "category": "cool",
+          "popularity": 71,
+          "applications": ["акцентна стіна", "меблі"],
+          "rooms": ["кабінет", "вітальня", "спальня"]
+        },
+        {
+          "id": "powder-pink",
+          "name": "Пудрово-рожевий",
+          "hex": "#F4C2C2",
+          "rgb": "rgb(244, 194, 194)",
+          "description": "Ніжний рожевий відтінок, романтичний та м'який",
+          "category": "warm",
+          "popularity": 63,
+          "applications": ["стіни", "текстиль", "декор"],
+          "rooms": ["спальня", "дитяча", "ванна"]
+        }
+      ]
+    },
+    "classic": {
+      "name": "Класичні кольори",
+      "colors": [
+        {
+          "id": "ivory",
+          "name": "Слонова кістка",
+          "hex": "#FFFFF0",
+          "rgb": "rgb(255, 255, 240)",
+          "description": "Теплий відтінок білого з легким жовтуватим відтінком",
+          "category": "neutrals",
+          "popularity": 84,
+          "applications": ["стіни", "стеля", "меблі"],
+          "rooms": ["всі кімнати"]
+        },
+        {
+          "id": "charcoal",
+          "name": "Деревне вугілля",
+          "hex": "#36454F",
+          "rgb": "rgb(54, 69, 79)",
+          "description": "Темний сіро-синій, елегантний та сучасний",
+          "category": "cool",
+          "popularity": 72,
+          "applications": ["акцентна стіна", "меблі"],
+          "rooms": ["кабінет", "вітальня", "спальня"]
+        },
+        {
+          "id": "cream",
+          "name": "Кремовий",
+          "hex": "#FFFDD0", 
+          "rgb": "rgb(255, 253, 208)",
+          "description": "М'який жовтувато-білий, теплий та затишний",
+          "category": "warm",
+          "popularity": 81,
+          "applications": ["стіни", "стеля"],
+          "rooms": ["спальня", "вітальня", "дитяча"]
+        },
+        {
+          "id": "burgundy",
+          "name": "Бургундський",
+          "hex": "#800020",
+          "rgb": "rgb(128, 0, 32)", 
+          "description": "Глибокий червоно-фіолетовий, розкішний та елегантний",
+          "category": "warm",
+          "popularity": 58,
+          "applications": ["акцентна стіна", "меблі", "декор"],
+          "rooms": ["їдальня", "кабінет", "вітальня"]
+        },
+        {
+          "id": "golden-yellow",
+          "name": "Золотисто-жовтий",
+          "hex": "#FFD700",
+          "rgb": "rgb(255, 215, 0)",
+          "description": "Яскравий жовтий з золотистим відливом, енергійний та радісний",
+          "category": "warm", 
+          "popularity": 54,
+          "applications": ["акценти", "декор"],
+          "rooms": ["кухня", "дитяча", "передпокій"]
+        }
+      ]
+    },
+    "scandinavian": {
+      "name": "Скандинавський стиль",
+      "colors": [
+        {
+          "id": "pure-white",
+          "name": "Чистий білий",
+          "hex": "#FAFAFA",
+          "rgb": "rgb(250, 250, 250)",
+          "description": "Ідеальний білий для скандинавського мінімалізму",
+          "category": "neutrals",
+          "popularity": 92,
+          "applications": ["стіни", "стеля", "меблі"],
+          "rooms": ["всі кімнати"]
+        },
+        {
+          "id": "light-gray",
+          "name": "Світло-сірий",
+          "hex": "#F5F5F5",
+          "rgb": "rgb(245, 245, 245)",
+          "description": "Ледве помітний сірий, створює спокійну атмосферу",
+          "category": "neutrals",
+          "popularity": 87,
+          "applications": ["стіни", "текстиль"],
+          "rooms": ["спальня", "вітальня", "ванна"]
+        },
+        {
+          "id": "pale-blue",
+          "name": "Блідо-блакитний",
+          "hex": "#E6F3FF",
+          "rgb": "rgb(230, 243, 255)",
+          "description": "Ніжний блакитний, як скандинавське небо",
+          "category": "cool",
+          "popularity": 74,
+          "applications": ["стіни", "текстиль"],
+          "rooms": ["спальня", "дитяча", "ванна"]
+        },
+        {
+          "id": "natural-wood",
+          "name": "Натуральне дерево",
+          "hex": "#DEB887",
+          "rgb": "rgb(222, 184, 135)",
+          "description": "Колір світлої деревини, основа скандинавського стилю",
+          "category": "warm",
+          "popularity": 86,
+          "applications": ["меблі", "підлога", "декор"],
+          "rooms": ["всі кімнати"]
+        },
+        {
+          "id": "soft-mint",
+          "name": "М'який м'ятний",
+          "hex": "#F0FFF0",
+          "rgb": "rgb(240, 255, 240)",
+          "description": "Ледве помітний зелений, свіжий та природний",
+          "category": "cool",
+          "popularity": 69,
+          "applications": ["стіни", "акценти"],
+          "rooms": ["ванна", "кухня", "дитяча"]
+        }
+      ]
+    }
+  },
+  "colorHarmony": {
+    "complementary": {
+      "name": "Комплементарні",
+      "description": "Кольори, розташовані навпроти один одного в колірному колі",
+      "combinations": [
+        {
+          "primary": "navy-blue",
+          "secondary": "golden-yellow",
+          "description": "Класичне поєднання синього та жовтого"
+        },
+        {
+          "primary": "forest-green", 
+          "secondary": "burgundy",
+          "description": "Елегантне поєднання зеленого та червоного"
+        }
+      ]
+    },
+    "analogous": {
+      "name": "Аналогові",
+      "description": "Сусідні кольори в колірному колі", 
+      "combinations": [
+        {
+          "colors": ["sage-green", "dusty-blue", "soft-mint"],
+          "description": "Спокійна природна палітра"
+        },
+        {
+          "colors": ["terracotta", "ochre-yellow", "cream"],
+          "description": "Тепла земляна гама"
+        }
+      ]
+    },
+    "monochromatic": {
+      "name": "Монохромні",
+      "description": "Різні відтінки одного кольору",
+      "combinations": [
+        {
+          "base": "warm-gray",
+          "variations": ["light-gray", "charcoal"],
+          "description": "Сіра монохромна палітра"
+        },
+        {
+          "base": "sage-green",
+          "variations": ["soft-mint", "forest-green"], 
+          "description": "Зелена монохромна палітра"
+        }
+      ]
+    }
+  },
+  "roomRecommendations": {
+    "bedroom": {
+      "name": "Спальня",
+      "recommended": ["soft-beige", "dusty-blue", "sage-green", "powder-pink", "light-gray"],
+      "avoid": ["golden-yellow", "burgundy", "bright-orange"],
+      "tips": "Обирайте заспокійливі та приглушені тони для кращого відпочинку"
+    },
+    "living-room": {
+      "name": "Вітальня", 
+      "recommended": ["warm-gray", "terracotta", "forest-green", "ivory", "navy-blue"],
+      "avoid": [],
+      "tips": "Можна експериментувати з яскравими акцентами та контрастами"
+    },
+    "kitchen": {
+      "name": "Кухня",
+      "recommended": ["white-classic", "sage-green", "ochre-yellow", "cream", "soft-mint"],
+      "avoid": ["dusty-blue", "powder-pink"],
+      "tips": "Світлі кольори візуально збільшують простір та створюють відчуття чистоти"
+    },
+    "bathroom": {
+      "name": "Ванна кімната",
+      "recommended": ["pure-white", "pale-blue", "soft-mint", "light-gray", "dusty-blue"],
+      "avoid": ["terracotta", "burgundy"],
+      "tips": "Свіжі та чисті кольори створюють spa-атмосферу"
+    },
+    "office": {
+      "name": "Кабінет",
+      "recommended": ["charcoal", "navy-blue", "forest-green", "warm-gray", "ivory"],
+      "avoid": ["powder-pink", "bright-yellow"],
+      "tips": "Стримані кольори сприяють концентрації та продуктивності"
+    }
+  }
+}

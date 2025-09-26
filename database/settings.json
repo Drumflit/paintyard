@@ -1,0 +1,178 @@
+{
+  "site": {
+    "title": "PaintYard",
+    "description": "Професійні фарби Teknos та AURA в Україні",
+    "keywords": "фарби, teknos, aura, фарба, будівельні матеріали",
+    "logo": "assets/images/logo.png",
+    "favicon": "assets/images/favicon.ico",
+    "language": "uk",
+    "timezone": "Europe/Kiev"
+  },
+  "company": {
+    "name": "PaintYard",
+    "fullName": "ТОВ \"ПейнтЯрд\"",
+    "address": {
+      "city": "Івано-Франківськ",
+      "street": "вул. Незалежності, 45",
+      "postalCode": "76000",
+      "country": "Україна"
+    },
+    "contact": {
+      "phone": "+380123456789",
+      "email": "info@paintyard.ua",
+      "workHours": "Пн-Пт: 9:00-18:00, Сб: 10:00-15:00"
+    },
+    "social": {
+      "facebook": "https://facebook.com/paintyard",
+      "instagram": "https://instagram.com/paintyard",
+      "telegram": "https://t.me/paintyard"
+    }
+  },
+  "admin": {
+    "credentials": {
+      "username": "admin",
+      "password": "paintyard2024"
+    },
+    "sessionTimeout": 3600,
+    "maxLoginAttempts": 5,
+    "backupFrequency": "daily",
+    "logLevel": "info"
+  },
+  "api": {
+    "version": "1.0",
+    "rateLimit": {
+      "requests": 100,
+      "window": 3600
+    },
+    "cors": {
+      "enabled": true,
+      "origins": ["https://paintyard.ua", "https://www.paintyard.ua"]
+    }
+  },
+  "database": {
+    "autoBackup": true,
+    "backupSchedule": "0 2 * * *",
+    "maxBackups": 30,
+    "compression": true
+  },
+  "notifications": {
+    "email": {
+      "smtp": {
+        "host": "smtp.gmail.com",
+        "port": 587,
+        "secure": false,
+        "auth": {
+          "user": "noreply@paintyard.ua",
+          "pass": "your_app_password"
+        }
+      },
+      "templates": {
+        "orderConfirmation": "order-confirmation.html",
+        "orderStatusUpdate": "order-status-update.html",
+        "newOrder": "new-order-admin.html"
+      }
+    },
+    "sms": {
+      "provider": "turbosms",
+      "apiKey": "your_api_key",
+      "sender": "PaintYard"
+    }
+  },
+  "delivery": {
+    "methods": {
+      "courier": {
+        "enabled": true,
+        "price": 150,
+        "freeFrom": 5000,
+        "zones": ["Київ", "Львів", "Одеса", "Дніпро", "Харків"]
+      },
+      "nova_poshta": {
+        "enabled": true,
+        "apiKey": "your_nova_poshta_api_key",
+        "costCalculation": "auto"
+      },
+      "ukr_poshta": {
+        "enabled": false
+      },
+      "pickup": {
+        "enabled": true,
+        "locations": [
+          {
+            "name": "Головний склад",
+            "address": "м. Івано-Франківськ, вул. Незалежності, 45",
+            "workHours": "Пн-Пт: 9:00-18:00, Сб: 10:00-15:00",
+            "phone": "+380123456789"
+          }
+        ]
+      }
+    }
+  },
+  "payment": {
+    "methods": {
+      "cash": {
+        "enabled": true,
+        "name": "Готівкою при отриманні"
+      },
+      "card": {
+        "enabled": true,
+        "name": "Банківською картою",
+        "processor": "liqpay",
+        "publicKey": "your_liqpay_public_key",
+        "privateKey": "your_liqpay_private_key"
+      },
+      "bank_transfer": {
+        "enabled": true,
+        "name": "Банківський переказ",
+        "accountDetails": {
+          "bank": "ПриватБанк",
+          "account": "UA123456789012345678901234567",
+          "mfo": "305299",
+          "edrpou": "12345678"
+        }
+      }
+    },
+    "currency": "UAH",
+    "taxRate": 0.2
+  },
+  "inventory": {
+    "lowStockThreshold": 10,
+    "outOfStockNotification": true,
+    "autoReorder": false,
+    "warehouseLocation": "Івано-Франківськ"
+  },
+  "seo": {
+    "googleAnalytics": "UA-XXXXXXXX-X",
+    "googleTagManager": "GTM-XXXXXXX",
+    "facebookPixel": "123456789012345",
+    "metaRobots": "index, follow",
+    "canonicalUrl": "https://paintyard.ua"
+  },
+  "performance": {
+    "cacheEnabled": true,
+    "cacheExpiration": 3600,
+    "compressionEnabled": true,
+    "lazyLoadImages": true
+  },
+  "security": {
+    "sslRequired": true,
+    "csrfProtection": true,
+    "xssProtection": true,
+    "contentSecurityPolicy": true,
+    "rateLimiting": true
+  },
+  "maintenance": {
+    "mode": false,
+    "message": "Сайт тимчасово недоступний через технічні роботи. Очікувана тривалість: 30 хвилин.",
+    "allowedIPs": ["127.0.0.1", "192.168.1.1"]
+  },
+  "features": {
+    "colorMixer": true,
+    "priceCalculator": true,
+    "customerReviews": true,
+    "wishlist": true,
+    "compareProducts": true,
+    "newsletter": true
+  },
+  "lastUpdated": "2024-09-26T14:30:00.000Z",
+  "version": "2.0.1"
+}
