@@ -1,8 +1,8 @@
 {
   "site": {
     "title": "PaintYard",
-    "description": "Професійні фарби Teknos та AURA в Україні",
-    "keywords": "фарби, teknos, aura, фарба, будівельні матеріали",
+    "description": "РџСЂРѕС„РµСЃС–Р№РЅС– С„Р°СЂР±Рё Teknos С‚Р° AURA РІ РЈРєСЂР°С—РЅС–",
+    "keywords": "С„Р°СЂР±Рё, teknos, aura, С„Р°СЂР±Р°, Р±СѓРґС–РІРµР»СЊРЅС– РјР°С‚РµСЂС–Р°Р»Рё",
     "logo": "assets/images/logo.png",
     "favicon": "assets/images/favicon.ico",
     "language": "uk",
@@ -10,17 +10,17 @@
   },
   "company": {
     "name": "PaintYard",
-    "fullName": "ТОВ \"ПейнтЯрд\"",
+    "fullName": "РўРћР’ \"РџРµР№РЅС‚РЇСЂРґ\"",
     "address": {
-      "city": "Івано-Франківськ",
-      "street": "вул. Незалежності, 45",
+      "city": "Р†РІР°РЅРѕ-Р¤СЂР°РЅРєС–РІСЃСЊРє",
+      "street": "РІСѓР». РќРµР·Р°Р»РµР¶РЅРѕСЃС‚С–, 45",
       "postalCode": "76000",
-      "country": "Україна"
+      "country": "РЈРєСЂР°С—РЅР°"
     },
     "contact": {
       "phone": "+380123456789",
       "email": "info@paintyard.ua",
-      "workHours": "Пн-Пт: 9:00-18:00, Сб: 10:00-15:00"
+      "workHours": "РџРЅ-РџС‚: 9:00-18:00, РЎР±: 10:00-15:00"
     },
     "social": {
       "facebook": "https://facebook.com/paintyard",
@@ -84,7 +84,7 @@
         "enabled": true,
         "price": 150,
         "freeFrom": 5000,
-        "zones": ["Київ", "Львів", "Одеса", "Дніпро", "Харків"]
+        "zones": ["РљРёС—РІ", "Р›СЊРІС–РІ", "РћРґРµСЃР°", "Р”РЅС–РїСЂРѕ", "РҐР°СЂРєС–РІ"]
       },
       "nova_poshta": {
         "enabled": true,
@@ -98,9 +98,9 @@
         "enabled": true,
         "locations": [
           {
-            "name": "Головний склад",
-            "address": "м. Івано-Франківськ, вул. Незалежності, 45",
-            "workHours": "Пн-Пт: 9:00-18:00, Сб: 10:00-15:00",
+            "name": "Р“РѕР»РѕРІРЅРёР№ СЃРєР»Р°Рґ",
+            "address": "Рј. Р†РІР°РЅРѕ-Р¤СЂР°РЅРєС–РІСЃСЊРє, РІСѓР». РќРµР·Р°Р»РµР¶РЅРѕСЃС‚С–, 45",
+            "workHours": "РџРЅ-РџС‚: 9:00-18:00, РЎР±: 10:00-15:00",
             "phone": "+380123456789"
           }
         ]
@@ -111,20 +111,20 @@
     "methods": {
       "cash": {
         "enabled": true,
-        "name": "Готівкою при отриманні"
+        "name": "Р“РѕС‚С–РІРєРѕСЋ РїСЂРё РѕС‚СЂРёРјР°РЅРЅС–"
       },
       "card": {
         "enabled": true,
-        "name": "Банківською картою",
+        "name": "Р‘Р°РЅРєС–РІСЃСЊРєРѕСЋ РєР°СЂС‚РѕСЋ",
         "processor": "liqpay",
         "publicKey": "your_liqpay_public_key",
         "privateKey": "your_liqpay_private_key"
       },
       "bank_transfer": {
         "enabled": true,
-        "name": "Банківський переказ",
+        "name": "Р‘Р°РЅРєС–РІСЃСЊРєРёР№ РїРµСЂРµРєР°Р·",
         "accountDetails": {
-          "bank": "ПриватБанк",
+          "bank": "РџСЂРёРІР°С‚Р‘Р°РЅРє",
           "account": "UA123456789012345678901234567",
           "mfo": "305299",
           "edrpou": "12345678"
@@ -138,7 +138,7 @@
     "lowStockThreshold": 10,
     "outOfStockNotification": true,
     "autoReorder": false,
-    "warehouseLocation": "Івано-Франківськ"
+    "warehouseLocation": "Р†РІР°РЅРѕ-Р¤СЂР°РЅРєС–РІСЃСЊРє"
   },
   "seo": {
     "googleAnalytics": "UA-XXXXXXXX-X",
@@ -162,7 +162,7 @@
   },
   "maintenance": {
     "mode": false,
-    "message": "Сайт тимчасово недоступний через технічні роботи. Очікувана тривалість: 30 хвилин.",
+    "message": "РЎР°Р№С‚ С‚РёРјС‡Р°СЃРѕРІРѕ РЅРµРґРѕСЃС‚СѓРїРЅРёР№ С‡РµСЂРµР· С‚РµС…РЅС–С‡РЅС– СЂРѕР±РѕС‚Рё. РћС‡С–РєСѓРІР°РЅР° С‚СЂРёРІР°Р»С–СЃС‚СЊ: 30 С…РІРёР»РёРЅ.",
     "allowedIPs": ["127.0.0.1", "192.168.1.1"]
   },
   "features": {
