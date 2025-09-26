@@ -1,35 +1,35 @@
 <?php
 /**
  * PaintYard API Configuration
- * Êîíô³ãóðàö³ÿ API äëÿ ðîáîòè ç áàçàìè äàíèõ
+ * ÐšÐ¾Ð½Ñ„Ñ–Ð³ÑƒÑ€Ð°Ñ†Ñ–Ñ API Ð´Ð»Ñ Ñ€Ð¾Ð±Ð¾Ñ‚Ð¸ Ð· Ð±Ð°Ð·Ð°Ð¼Ð¸ Ð´Ð°Ð½Ð¸Ñ…
  */
 
-// Çàáîðîíà ïðÿìîãî äîñòóïó
+// Ð—Ð°Ð±Ð¾Ñ€Ð¾Ð½Ð° Ð¿Ñ€ÑÐ¼Ð¾Ð³Ð¾ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ñƒ
 if (!defined('API_ACCESS')) {
     die('Direct access forbidden');
 }
 
-// Îñíîâí³ íàëàøòóâàííÿ
+// ÐžÑÐ½Ð¾Ð²Ð½Ñ– Ð½Ð°Ð»Ð°ÑˆÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ
 define('API_VERSION', '1.0');
 define('API_ACCESS', true);
 
-// Øëÿõè äî ôàéë³â áàç äàíèõ
+// Ð¨Ð»ÑÑ…Ð¸ Ð´Ð¾ Ñ„Ð°Ð¹Ð»Ñ–Ð² Ð±Ð°Ð· Ð´Ð°Ð½Ð¸Ñ…
 define('DB_PATH', '../database/');
 define('BACKUP_PATH', '../database/backup/');
 
-// Ôàéëè áàç äàíèõ
+// Ð¤Ð°Ð¹Ð»Ð¸ Ð±Ð°Ð· Ð´Ð°Ð½Ð¸Ñ…
 define('PRODUCTS_DB', DB_PATH . 'products.json');
 define('ARTICLES_DB', DB_PATH . 'articles.json');
 define('ORDERS_DB', DB_PATH . 'orders.json');
 define('SETTINGS_DB', DB_PATH . 'settings.json');
 
-// Íàëàøòóâàííÿ áåçïåêè
+// ÐÐ°Ð»Ð°ÑˆÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ð±ÐµÐ·Ð¿ÐµÐºÐ¸
 define('ADMIN_USERNAME', 'admin');
-define('ADMIN_PASSWORD', 'paintyard2024'); // Â ðåàëüíîìó ïðîåêò³ âèêîðèñòîâóéòå õåøóâàííÿ!
-define('SESSION_TIMEOUT', 3600); // 1 ãîäèíà
+define('ADMIN_PASSWORD', 'paintyard2024'); // Ð’ Ñ€ÐµÐ°Ð»ÑŒÐ½Ð¾Ð¼Ñƒ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ñ– Ð²Ð¸ÐºÐ¾Ñ€Ð¸ÑÑ‚Ð¾Ð²ÑƒÐ¹Ñ‚Ðµ Ñ…ÐµÑˆÑƒÐ²Ð°Ð½Ð½Ñ!
+define('SESSION_TIMEOUT', 3600); // 1 Ð³Ð¾Ð´Ð¸Ð½Ð°
 define('MAX_LOGIN_ATTEMPTS', 5);
 
-// CORS íàëàøòóâàííÿ
+// CORS Ð½Ð°Ð»Ð°ÑˆÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ
 define('ALLOWED_ORIGINS', [
     'http://localhost',
     'http://127.0.0.1',
@@ -37,16 +37,16 @@ define('ALLOWED_ORIGINS', [
     'https://www.paintyard.ua'
 ]);
 
-// Íàëàøòóâàííÿ ëîãóâàííÿ
+// ÐÐ°Ð»Ð°ÑˆÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ð»Ð¾Ð³ÑƒÐ²Ð°Ð½Ð½Ñ
 define('LOG_LEVEL', 'info'); // debug, info, warning, error
 define('LOG_FILE', '../logs/api.log');
 
-// Íàëàøòóâàííÿ ðåçåðâíîãî êîï³þâàííÿ
+// ÐÐ°Ð»Ð°ÑˆÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ñ€ÐµÐ·ÐµÑ€Ð²Ð½Ð¾Ð³Ð¾ ÐºÐ¾Ð¿Ñ–ÑŽÐ²Ð°Ð½Ð½Ñ
 define('AUTO_BACKUP', true);
 define('BACKUP_FREQUENCY', 'daily'); // hourly, daily, weekly
 define('MAX_BACKUPS', 30);
 
-// Ôóíêö³ÿ äëÿ ÷èòàííÿ JSON ôàéëó
+// Ð¤ÑƒÐ½ÐºÑ†Ñ–Ñ Ð´Ð»Ñ Ñ‡Ð¸Ñ‚Ð°Ð½Ð½Ñ JSON Ñ„Ð°Ð¹Ð»Ñƒ
 function readJsonFile($filePath) {
     if (!file_exists($filePath)) {
         return ['error' => 'File not found: ' . $filePath];
@@ -65,21 +65,21 @@ function readJsonFile($filePath) {
     return $data;
 }
 
-// Ôóíêö³ÿ äëÿ çàïèñó JSON ôàéëó
+// Ð¤ÑƒÐ½ÐºÑ†Ñ–Ñ Ð´Ð»Ñ Ð·Ð°Ð¿Ð¸ÑÑƒ JSON Ñ„Ð°Ð¹Ð»Ñƒ
 function writeJsonFile($filePath, $data) {
     $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     if ($json === false) {
         return false;
     }
     
-    // Ñòâîðþºìî ðåçåðâíó êîï³þ ïåðåä çàïèñîì
+    // Ð¡Ñ‚Ð²Ð¾Ñ€ÑŽÑ”Ð¼Ð¾ Ñ€ÐµÐ·ÐµÑ€Ð²Ð½Ñƒ ÐºÐ¾Ð¿Ñ–ÑŽ Ð¿ÐµÑ€ÐµÐ´ Ð·Ð°Ð¿Ð¸ÑÐ¾Ð¼
     if (file_exists($filePath) && AUTO_BACKUP) {
         createBackup($filePath);
     }
     
     $result = file_put_contents($filePath, $json, LOCK_EX);
     
-    // Ëîãóºìî îïåðàö³þ
+    // Ð›Ð¾Ð³ÑƒÑ”Ð¼Ð¾ Ð¾Ð¿ÐµÑ€Ð°Ñ†Ñ–ÑŽ
     if ($result !== false) {
         logAction('File updated: ' . $filePath);
         return true;
@@ -89,7 +89,7 @@ function writeJsonFile($filePath, $data) {
     }
 }
 
-// Ôóíêö³ÿ ñòâîðåííÿ ðåçåðâíî¿ êîï³¿
+// Ð¤ÑƒÐ½ÐºÑ†Ñ–Ñ ÑÑ‚Ð²Ð¾Ñ€ÐµÐ½Ð½Ñ Ñ€ÐµÐ·ÐµÑ€Ð²Ð½Ð¾Ñ— ÐºÐ¾Ð¿Ñ–Ñ—
 function createBackup($filePath) {
     if (!file_exists($filePath)) {
         return false;
@@ -99,7 +99,7 @@ function createBackup($filePath) {
     $timestamp = date('Y-m-d_H-i-s');
     $backupFile = BACKUP_PATH . $fileName . '_backup_' . $timestamp . '.json';
     
-    // Ñòâîðþºìî ïàïêó backup ÿêùî íå ³ñíóº
+    // Ð¡Ñ‚Ð²Ð¾Ñ€ÑŽÑ”Ð¼Ð¾ Ð¿Ð°Ð¿ÐºÑƒ backup ÑÐºÑ‰Ð¾ Ð½Ðµ Ñ–ÑÐ½ÑƒÑ”
     if (!is_dir(BACKUP_PATH)) {
         mkdir(BACKUP_PATH, 0755, true);
     }
@@ -116,15 +116,15 @@ function createBackup($filePath) {
     return $result;
 }
 
-// Ôóíêö³ÿ î÷èùåííÿ ñòàðèõ ðåçåðâíèõ êîï³é
+// Ð¤ÑƒÐ½ÐºÑ†Ñ–Ñ Ð¾Ñ‡Ð¸Ñ‰ÐµÐ½Ð½Ñ ÑÑ‚Ð°Ñ€Ð¸Ñ… Ñ€ÐµÐ·ÐµÑ€Ð²Ð½Ð¸Ñ… ÐºÐ¾Ð¿Ñ–Ð¹
 function cleanOldBackups($fileName) {
     $backupFiles = glob(BACKUP_PATH . $fileName . '_backup_*.json');
     
     if (count($backupFiles) > MAX_BACKUPS) {
-        // Ñîðòóºìî ïî äàò³ ñòâîðåííÿ
+        // Ð¡Ð¾Ñ€Ñ‚ÑƒÑ”Ð¼Ð¾ Ð¿Ð¾ Ð´Ð°Ñ‚Ñ– ÑÑ‚Ð²Ð¾Ñ€ÐµÐ½Ð½Ñ
         array_multisort(array_map('filemtime', $backupFiles), SORT_ASC, $backupFiles);
         
-        // Âèäàëÿºìî íàéñòàð³ø³ ôàéëè
+        // Ð’Ð¸Ð´Ð°Ð»ÑÑ”Ð¼Ð¾ Ð½Ð°Ð¹ÑÑ‚Ð°Ñ€Ñ–ÑˆÑ– Ñ„Ð°Ð¹Ð»Ð¸
         $filesToDelete = array_slice($backupFiles, 0, count($backupFiles) - MAX_BACKUPS);
         
         foreach ($filesToDelete as $file) {
@@ -135,7 +135,7 @@ function cleanOldBackups($fileName) {
     }
 }
 
-// Ôóíêö³ÿ ëîãóâàííÿ
+// Ð¤ÑƒÐ½ÐºÑ†Ñ–Ñ Ð»Ð¾Ð³ÑƒÐ²Ð°Ð½Ð½Ñ
 function logAction($message, $level = 'info') {
     if (!defined('LOG_LEVEL')) return;
     
@@ -148,7 +148,7 @@ function logAction($message, $level = 'info') {
     $timestamp = date('Y-m-d H:i:s');
     $logEntry = "[{$timestamp}] [{$level}] {$message}" . PHP_EOL;
     
-    // Ñòâîðþºìî ïàïêó logs ÿêùî íå ³ñíóº
+    // Ð¡Ñ‚Ð²Ð¾Ñ€ÑŽÑ”Ð¼Ð¾ Ð¿Ð°Ð¿ÐºÑƒ logs ÑÐºÑ‰Ð¾ Ð½Ðµ Ñ–ÑÐ½ÑƒÑ”
     $logDir = dirname(LOG_FILE);
     if (!is_dir($logDir)) {
         mkdir($logDir, 0755, true);
@@ -157,7 +157,7 @@ function logAction($message, $level = 'info') {
     file_put_contents(LOG_FILE, $logEntry, FILE_APPEND | LOCK_EX);
 }
 
-// Ôóíêö³ÿ âàë³äàö³¿ CORS
+// Ð¤ÑƒÐ½ÐºÑ†Ñ–Ñ Ð²Ð°Ð»Ñ–Ð´Ð°Ñ†Ñ–Ñ— CORS
 function validateCORS() {
     $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
     
@@ -169,14 +169,14 @@ function validateCORS() {
     header('Access-Control-Allow-Headers: Content-Type, Authorization');
     header('Access-Control-Allow-Credentials: true');
     
-    // Îáðîáêà preflight çàïèò³â
+    // ÐžÐ±Ñ€Ð¾Ð±ÐºÐ° preflight Ð·Ð°Ð¿Ð¸Ñ‚Ñ–Ð²
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
         http_response_code(200);
         exit;
     }
 }
 
-// Ôóíêö³ÿ â³äïîâ³ä³ JSON
+// Ð¤ÑƒÐ½ÐºÑ†Ñ–Ñ Ð²Ñ–Ð´Ð¿Ð¾Ð²Ñ–Ð´Ñ– JSON
 function jsonResponse($data, $httpCode = 200) {
     http_response_code($httpCode);
     header('Content-Type: application/json; charset=utf-8');
@@ -184,12 +184,12 @@ function jsonResponse($data, $httpCode = 200) {
     exit;
 }
 
-// Ôóíêö³ÿ ãåíåðàö³¿ óí³êàëüíîãî ID
+// Ð¤ÑƒÐ½ÐºÑ†Ñ–Ñ Ð³ÐµÐ½ÐµÑ€Ð°Ñ†Ñ–Ñ— ÑƒÐ½Ñ–ÐºÐ°Ð»ÑŒÐ½Ð¾Ð³Ð¾ ID
 function generateId() {
     return time() . rand(100, 999);
 }
 
-// Ôóíêö³ÿ âàë³äàö³¿ äàíèõ
+// Ð¤ÑƒÐ½ÐºÑ†Ñ–Ñ Ð²Ð°Ð»Ñ–Ð´Ð°Ñ†Ñ–Ñ— Ð´Ð°Ð½Ð¸Ñ…
 function validateRequired($data, $requiredFields) {
     $errors = [];
     
@@ -202,7 +202,7 @@ function validateRequired($data, $requiredFields) {
     return $errors;
 }
 
-// Ôóíêö³ÿ ñàí³ò³çàö³¿ äàíèõ
+// Ð¤ÑƒÐ½ÐºÑ†Ñ–Ñ ÑÐ°Ð½Ñ–Ñ‚Ñ–Ð·Ð°Ñ†Ñ–Ñ— Ð´Ð°Ð½Ð¸Ñ…
 function sanitizeData($data) {
     if (is_array($data)) {
         return array_map('sanitizeData', $data);
@@ -211,14 +211,14 @@ function sanitizeData($data) {
     return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
 }
 
-// Àâòîìàòè÷íå íàëàøòóâàííÿ ïðè âêëþ÷åíí³ ôàéëó
+// ÐÐ²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ðµ Ð½Ð°Ð»Ð°ÑˆÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ð¿Ñ€Ð¸ Ð²ÐºÐ»ÑŽÑ‡ÐµÐ½Ð½Ñ– Ñ„Ð°Ð¹Ð»Ñƒ
 validateCORS();
 
-// Íàëàøòóâàííÿ PHP äëÿ JSON
+// ÐÐ°Ð»Ð°ÑˆÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ PHP Ð´Ð»Ñ JSON
 ini_set('default_charset', 'UTF-8');
 mb_internal_encoding('UTF-8');
 
-// Ëîãóºìî ïî÷àòîê ðîáîòè API
+// Ð›Ð¾Ð³ÑƒÑ”Ð¼Ð¾ Ð¿Ð¾Ñ‡Ð°Ñ‚Ð¾Ðº Ñ€Ð¾Ð±Ð¾Ñ‚Ð¸ API
 logAction('API initialized - ' . $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI']);
 
 ?>
