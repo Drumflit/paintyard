@@ -131,7 +131,7 @@
 
         .card-header {
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
             padding-bottom: 0.75rem;
@@ -257,7 +257,7 @@
         }
 
         .table tr:hover {
-            background: var(--gray-50);
+            background: #f8fafc;
         }
 
         /* Статистика */
@@ -405,6 +405,20 @@
         .mt-1 { margin-top: 0.5rem; }
         .mb-2 { margin-bottom: 1rem; }
         .p-1 { padding: 0.5rem; }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-new { background: rgba(59, 130, 246, 0.1); color: #1d4ed8; }
+        .status-processing { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+        .status-completed { background: rgba(34, 197, 94, 0.1); color: #059669; }
+        .status-cancelled { background: rgba(239, 68, 68, 0.1); color: #dc2626; }
+        .status-published { background: rgba(34, 197, 94, 0.1); color: #059669; }
+        .status-draft { background: rgba(245, 158, 11, 0.1); color: #d97706; }
     </style>
 </head>
 <body>
@@ -476,8 +490,714 @@
             </div>
 
             <div class="filters-container">
-                <input type="text" class="form-input search-input" placeholder="🔍 Пошук товарів..." onkeyup="filterProducts()">
-                <select class="form-select" onchange="filterProducts()">
-                    <option value="">Всі категорії</option>
+                <input type="text" class="form-input search-input" placeholder="🔍 Пошук товарів..." onkeyup="filterProducts()" id="product-search">
+                <select class="form-select" onchange="filterProducts()" id="product-brand-filter">
+                    <option value="">Всі бренди</option>
                     <option value="teknos">Teknos</option>
-                    <option value="aura">Aura</option>
+                    <option value="aura">AURA</option>
+                </select>
+                <select class="form-select" onchange="filterProducts()" id="product-category-filter">
+                    <option value="">Всі категорії</option>
+                    <option value="interior">Інтер'єр</option>
+                    <option value="exterior">Екстер'єр</option>
+                    <option value="wood">Для дерева</option>
+                    <option value="eco">Еко-фарби</option>
+                    <option value="special">Спеціальні</option>
+                </select>
+            </div>
+
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Назва</th>
+                            <th>Бренд</th>
+                            <th>Категорія</th>
+                            <th>Ціна</th>
+                            <th>Наявність</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body">
+                        <!-- Тут будуть товари -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- СТАТТІ -->
+        <section id="articles-section" class="admin-section">
+            <div class="section-header">
+                <h1 class="section-title">Управління статтями</h1>
+                <button class="btn btn-primary" onclick="showAddArticleModal()">➕ Додати статтю</button>
+            </div>
+
+            <div class="filters-container">
+                <input type="text" class="form-input search-input" placeholder="🔍 Пошук статей..." onkeyup="filterArticles()" id="article-search">
+                <select class="form-select" onchange="filterArticles()" id="article-status-filter">
+                    <option value="">Всі статуси</option>
+                    <option value="published">Опубліковано</option>
+                    <option value="draft">Чернетка</option>
+                </select>
+            </div>
+
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Заголовок</th>
+                            <th>Автор</th>
+                            <th>Статус</th>
+                            <th>Дата</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody id="articles-table-body">
+                        <!-- Тут будуть статті -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ЗАМОВЛЕННЯ -->
+        <section id="orders-section" class="admin-section">
+            <div class="section-header">
+                <h1 class="section-title">Управління замовленнями</h1>
+            </div>
+
+            <div class="filters-container">
+                <input type="text" class="form-input search-input" placeholder="🔍 Пошук замовлень..." onkeyup="filterOrders()" id="order-search">
+                <select class="form-select" onchange="filterOrders()" id="order-status-filter">
+                    <option value="">Всі статуси</option>
+                    <option value="new">Нові</option>
+                    <option value="processing">В обробці</option>
+                    <option value="completed">Завершені</option>
+                    <option value="cancelled">Скасовані</option>
+                </select>
+            </div>
+
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>№ Замовлення</th>
+                            <th>Клієнт</th>
+                            <th>Телефон</th>
+                            <th>Сума</th>
+                            <th>Статус</th>
+                            <th>Дата</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table-body">
+                        <!-- Тут будуть замовлення -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- МОДАЛЬНІ ВІКНА -->
+    <!-- Модальне вікно додавання товару -->
+    <div class="modal" id="add-product-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Додати товар</h3>
+                <button class="modal-close" onclick="closeModal('add-product-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-product-form" onsubmit="addProduct(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Назва товару *</label>
+                            <input type="text" class="form-input" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Бренд *</label>
+                            <select class="form-select" name="brand" required>
+                                <option value="">Оберіть бренд</option>
+                                <option value="teknos">Teknos</option>
+                                <option value="aura">AURA</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Категорія</label>
+                            <select class="form-select" name="category">
+                                <option value="interior">Інтер'єр</option>
+                                <option value="exterior">Екстер'єр</option>
+                                <option value="wood">Для дерева</option>
+                                <option value="eco">Еко-фарби</option>
+                                <option value="special">Спеціальні</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Тара *</label>
+                            <input type="text" class="form-input" name="package" placeholder="напр. 2.7л" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Ціна (грн) *</label>
+                            <input type="number" class="form-input" name="price" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Кількість</label>
+                            <input type="number" class="form-input" name="quantity" value="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Опис</label>
+                        <textarea class="form-textarea" name="description" placeholder="Опис товару..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Особливості (кожна з нового рядка)</label>
+                        <textarea class="form-textarea" name="features" placeholder="Екологічно безпечна&#10;Стійка до миття&#10;Хороша укривність"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeModal('add-product-modal')">Скасувати</button>
+                <button type="submit" form="add-product-form" class="btn btn-primary">Додати товар</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальне вікно додавання статті -->
+    <div class="modal" id="add-article-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Додати статтю</h3>
+                <button class="modal-close" onclick="closeModal('add-article-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-article-form" onsubmit="addArticle(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Заголовок *</label>
+                            <input type="text" class="form-input" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Автор</label>
+                            <input type="text" class="form-input" name="author" value="Експерт МАЛЯРНИЙ">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Статус</label>
+                            <select class="form-select" name="status">
+                                <option value="draft">Чернетка</option>
+                                <option value="published">Опублікувати</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Короткий опис</label>
+                        <textarea class="form-textarea" name="excerpt" placeholder="Короткий опис статті..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Контент *</label>
+                        <textarea class="form-textarea" name="content" style="min-height: 200px;" placeholder="Текст статті..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Теги (через кому)</label>
+                        <input type="text" class="form-input" name="tags" placeholder="фарби, поради, інструкції">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeModal('add-article-modal')">Скасувати</button>
+                <button type="submit" form="add-article-form" class="btn btn-primary">Додати статтю</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Глобальні змінні
+        let allProducts = [];
+        let allArticles = [];
+        let allOrders = [];
+
+        // Ініціалізація
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllData();
+        });
+
+        // Завантаження всіх даних
+        async function loadAllData() {
+            try {
+                await Promise.all([
+                    loadProducts(),
+                    loadArticles(), 
+                    loadOrders()
+                ]);
+                updateDashboardStats();
+            } catch (error) {
+                console.error('Помилка завантаження:', error);
+                showNotification('Помилка завантаження даних', 'error');
+            }
+        }
+
+        // Завантаження товарів
+        async function loadProducts() {
+            try {
+                const response = await fetch('database/products.json');
+                const data = await response.json();
+                allProducts = data.products || [];
+                renderProducts();
+            } catch (error) {
+                console.error('Помилка завантаження товарів:', error);
+            }
+        }
+
+        // Завантаження статей
+        async function loadArticles() {
+            try {
+                const response = await fetch('database/articles.json');
+                const data = await response.json();
+                allArticles = data.articles || [];
+                renderArticles();
+            } catch (error) {
+                console.error('Помилка завантаження статей:', error);
+            }
+        }
+
+        // Завантаження замовлень
+        async function loadOrders() {
+            try {
+                const response = await fetch('database/orders.json');
+                const data = await response.json();
+                allOrders = data.orders || [];
+                renderOrders();
+            } catch (error) {
+                console.error('Помилка завантаження замовлень:', error);
+            }
+        }
+
+        // Навігація між секціями
+        function showSection(sectionName) {
+            // Приховуємо всі секції
+            document.querySelectorAll('.admin-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Показуємо потрібну секцію
+            document.getElementById(sectionName + '-section').classList.add('active');
+            
+            // Оновлюємо навігацію
+            document.querySelectorAll('.admin-nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Знаходимо і активуємо відповідний лінк
+            const activeLink = Array.from(document.querySelectorAll('.admin-nav-link'))
+                .find(link => link.onclick && link.onclick.toString().includes(sectionName));
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        // Оновлення статистики на панелі
+        function updateDashboardStats() {
+            document.getElementById('total-products').textContent = allProducts.length;
+            document.getElementById('total-articles').textContent = allArticles.length;
+            document.getElementById('total-orders').textContent = allOrders.length;
+            
+            const newOrders = allOrders.filter(order => order.status === 'new').length;
+            document.getElementById('pending-orders').textContent = newOrders;
+        }
+
+        // Рендеринг товарів
+        function renderProducts(products = allProducts) {
+            const tbody = document.getElementById('products-table-body');
+            
+            if (!products.length) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center">Товари не знайдено</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = products.map(product => `
+                <tr>
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td><span class="status-badge ${product.brand}">${product.brand.toUpperCase()}</span></td>
+                    <td>${product.category || 'Не вказано'}</td>
+                    <td>${product.price ? product.price.toFixed(2) + ' грн' : 'Не вказано'}</td>
+                    <td>
+                        ${product.inStock ? 
+                            `<span class="text-success">✓ В наявності (${product.quantity})</span>` : 
+                            '<span class="text-danger">✗ Немає</span>'}
+                    </td>
+                    <td>
+                        <button class="btn btn-outline btn-small" onclick="editProduct(${product.id})">✏️ Редагувати</button>
+                        <button class="btn btn-danger btn-small" onclick="deleteProduct(${product.id})">🗑️ Видалити</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Рендеринг статей
+        function renderArticles(articles = allArticles) {
+            const tbody = document.getElementById('articles-table-body');
+            
+            if (!articles.length) {
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center">Статті не знайдено</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = articles.map(article => {
+                const date = new Date(article.createdAt).toLocaleDateString('uk-UA');
+                return `
+                    <tr>
+                        <td>${article.id}</td>
+                        <td>${article.title}</td>
+                        <td>${article.author || 'Не вказано'}</td>
+                        <td><span class="status-badge status-${article.status}">${article.status === 'published' ? 'Опубліковано' : 'Чернетка'}</span></td>
+                        <td>${date}</td>
+                        <td>
+                            <button class="btn btn-outline btn-small" onclick="editArticle(${article.id})">✏️ Редагувати</button>
+                            <button class="btn btn-danger btn-small" onclick="deleteArticle(${article.id})">🗑️ Видалити</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Рендеринг замовлень
+        function renderOrders(orders = allOrders) {
+            const tbody = document.getElementById('orders-table-body');
+            
+            if (!orders.length) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center">Замовлення не знайдено</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = orders.map(order => {
+                const date = new Date(order.createdAt).toLocaleDateString('uk-UA');
+                const statusNames = {
+                    'new': 'Нове',
+                    'processing': 'В обробці', 
+                    'completed': 'Завершено',
+                    'cancelled': 'Скасовано'
+                };
+                
+                return `
+                    <tr>
+                        <td>${order.orderNumber || order.id}</td>
+                        <td>${order.customerInfo?.name || order.customerName || 'Не вказано'}</td>
+                        <td>${order.customerInfo?.phone || order.phone || 'Не вказано'}</td>
+                        <td>${order.orderSummary?.total?.toFixed(2) || order.total?.toFixed(2) || '0.00'} грн</td>
+                        <td><span class="status-badge status-${order.status}">${statusNames[order.status] || order.status}</span></td>
+                        <td>${date}</td>
+                        <td>
+                            <button class="btn btn-outline btn-small" onclick="viewOrder(${order.id})">👁️ Переглянути</button>
+                            <button class="btn btn-primary btn-small" onclick="editOrder(${order.id})">✏️ Редагувати</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Фільтрація товарів
+        function filterProducts() {
+            const search = document.getElementById('product-search').value.toLowerCase();
+            const brand = document.getElementById('product-brand-filter').value;
+            const category = document.getElementById('product-category-filter').value;
+            
+            const filtered = allProducts.filter(product => {
+                const matchesSearch = !search || product.name.toLowerCase().includes(search);
+                const matchesBrand = !brand || product.brand === brand;
+                const matchesCategory = !category || product.category === category;
+                
+                return matchesSearch && matchesBrand && matchesCategory;
+            });
+            
+            renderProducts(filtered);
+        }
+
+        // Фільтрація статей
+        function filterArticles() {
+            const search = document.getElementById('article-search').value.toLowerCase();
+            const status = document.getElementById('article-status-filter').value;
+            
+            const filtered = allArticles.filter(article => {
+                const matchesSearch = !search || article.title.toLowerCase().includes(search);
+                const matchesStatus = !status || article.status === status;
+                
+                return matchesSearch && matchesStatus;
+            });
+            
+            renderArticles(filtered);
+        }
+
+        // Фільтрація замовлень
+        function filterOrders() {
+            const search = document.getElementById('order-search').value.toLowerCase();
+            const status = document.getElementById('order-status-filter').value;
+            
+            const filtered = allOrders.filter(order => {
+                const customerName = order.customerInfo?.name || order.customerName || '';
+                const orderNumber = order.orderNumber || order.id.toString();
+                const matchesSearch = !search || 
+                    customerName.toLowerCase().includes(search) ||
+                    orderNumber.toLowerCase().includes(search);
+                const matchesStatus = !status || order.status === status;
+                
+                return matchesSearch && matchesStatus;
+            });
+            
+            renderOrders(filtered);
+        }
+
+        // Модальні вікна
+        function showAddProductModal() {
+            document.getElementById('add-product-modal').classList.add('active');
+        }
+
+        function showAddArticleModal() {
+            document.getElementById('add-article-modal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Додавання товару
+        async function addProduct(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const productData = {
+                name: formData.get('name'),
+                brand: formData.get('brand'),
+                category: formData.get('category'),
+                package: formData.get('package'),
+                price: parseFloat(formData.get('price')),
+                quantity: parseInt(formData.get('quantity')) || 0,
+                description: formData.get('description'),
+                features: formData.get('features') ? formData.get('features').split('\n').filter(f => f.trim()) : [],
+                inStock: parseInt(formData.get('quantity')) > 0
+            };
+            
+            try {
+                const response = await fetch('api/products.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(productData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification('Товар успішно додано!', 'success');
+                    closeModal('add-product-modal');
+                    event.target.reset();
+                    await loadProducts();
+                    updateDashboardStats();
+                } else {
+                    showNotification('Помилка: ' + (result.error || 'Невідома помилка'), 'error');
+                }
+            } catch (error) {
+                console.error('Помилка додавання товару:', error);
+                showNotification('Помилка додавання товару', 'error');
+            }
+        }
+
+        // Додавання статті
+        async function addArticle(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const articleData = {
+                title: formData.get('title'),
+                author: formData.get('author'),
+                status: formData.get('status'),
+                excerpt: formData.get('excerpt'),
+                content: formData.get('content'),
+                tags: formData.get('tags') ? formData.get('tags').split(',').map(t => t.trim()).filter(t => t) : []
+            };
+            
+            try {
+                const response = await fetch('api/articles.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(articleData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification('Статтю успішно додано!', 'success');
+                    closeModal('add-article-modal');
+                    event.target.reset();
+                    await loadArticles();
+                    updateDashboardStats();
+                } else {
+                    showNotification('Помилка: ' + (result.error || 'Невідома помилка'), 'error');
+                }
+            } catch (error) {
+                console.error('Помилка додавання статті:', error);
+                showNotification('Помилка додавання статті', 'error');
+            }
+        }
+
+        // Видалення товару
+        async function deleteProduct(productId) {
+            if (!confirm('Ви впевнені, що хочете видалити цей товар?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`api/products.php?id=${productId}`, {
+                    method: 'DELETE'
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification('Товар успішно видалено!', 'success');
+                    await loadProducts();
+                    updateDashboardStats();
+                } else {
+                    showNotification('Помилка видалення товару', 'error');
+                }
+            } catch (error) {
+                console.error('Помилка видалення товару:', error);
+                showNotification('Помилка видалення товару', 'error');
+            }
+        }
+
+        // Видалення статті
+        async function deleteArticle(articleId) {
+            if (!confirm('Ви впевнені, що хочете видалити цю статтю?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`api/articles.php?id=${articleId}`, {
+                    method: 'DELETE'
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification('Статтю успішно видалено!', 'success');
+                    await loadArticles();
+                    updateDashboardStats();
+                } else {
+                    showNotification('Помилка видалення статті', 'error');
+                }
+            } catch (error) {
+                console.error('Помилка видалення статті:', error);
+                showNotification('Помилка видалення статті', 'error');
+            }
+        }
+
+        // Заглушки для функцій, що будуть реалізовані пізніше
+        function editProduct(productId) {
+            showNotification('Функція редагування товару буде додана в наступній версії', 'info');
+        }
+
+        function editArticle(articleId) {
+            showNotification('Функція редагування статті буде додана в наступній версії', 'info');
+        }
+
+        function viewOrder(orderId) {
+            showNotification('Функція перегляду замовлення буде додана в наступній версії', 'info');
+        }
+
+        function editOrder(orderId) {
+            showNotification('Функція редагування замовлення буде додана в наступній версії', 'info');
+        }
+
+        // Експорт даних
+        async function exportData() {
+            try {
+                const exportData = {
+                    products: allProducts,
+                    articles: allArticles,
+                    orders: allOrders,
+                    exportDate: new Date().toISOString()
+                };
+                
+                const dataStr = JSON.stringify(exportData, null, 2);
+                const dataBlob = new Blob([dataStr], {type: 'application/json'});
+                const url = URL.createObjectURL(dataBlob);
+                
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `malyarnyj-backup-${new Date().toISOString().split('T')[0]}.json`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                URL.revokeObjectURL(url);
+                showNotification('Дані успішно експортовано!', 'success');
+            } catch (error) {
+                console.error('Помилка експорту:', error);
+                showNotification('Помилка експорту даних', 'error');
+            }
+        }
+
+        // Вихід з системи
+        function logout() {
+            if (confirm('Ви впевнені, що хочете вийти з адмін-панелі?')) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Показ повідомлень
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                color: white;
+                font-weight: 500;
+                z-index: 9999;
+                max-width: 400px;
+                box-shadow: var(--shadow);
+            `;
+            
+            const colors = {
+                success: '#16a34a',
+                error: '#dc2626',
+                warning: '#ea580c',
+                info: '#2563eb'
+            };
+            
+            notification.style.backgroundColor = colors[type] || colors.info;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        // Закриття модальних вікон по Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            }
+        });
+
+        // Закриття модальних вікон по кліку поза ними
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+            }
+        });
+
+        console.log('🎨 Адмін-панель МАЛЯРНИЙ завантажено успішно!');
+    </script>
+</body>
+</html>
