@@ -1,6 +1,6 @@
 <?php
 /**
- * PaintYard API Configuration
+ * МАЛЯРНИЙ API Configuration
  * Конфігурація API для роботи з базами даних
  */
 
@@ -33,8 +33,9 @@ define('MAX_LOGIN_ATTEMPTS', 5);
 define('ALLOWED_ORIGINS', [
     'http://localhost',
     'http://127.0.0.1',
-    'https://paintyard.ua',
-    'https://www.paintyard.ua'
+    'https://malyarnyj.ua',
+    'https://www.malyarnyj.ua',
+    'file://' // Для локальної розробки
 ]);
 
 // Налаштування логування
@@ -159,14 +160,22 @@ function logAction($message, $level = 'info') {
 
 // Функція валідації CORS
 function validateCORS() {
-    $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+    $origin = $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'] ?? '';
     
-    if (in_array($origin, ALLOWED_ORIGINS)) {
+    // Дозволяємо всі локальні запити
+    if (strpos($origin, 'http://localhost') === 0 || 
+        strpos($origin, 'http://127.0.0.1') === 0 || 
+        strpos($origin, 'file://') === 0 ||
+        empty($origin)) {
+        header('Access-Control-Allow-Origin: *');
+    } elseif (in_array($origin, ALLOWED_ORIGINS)) {
         header('Access-Control-Allow-Origin: ' . $origin);
+    } else {
+        header('Access-Control-Allow-Origin: *');
     }
     
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type, Authorization');
+    header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
     header('Access-Control-Allow-Credentials: true');
     
     // Обробка preflight запитів
