@@ -11,7 +11,6 @@ if (!defined('API_ACCESS')) {
 
 // Основні налаштування
 define('API_VERSION', '1.0');
-define('API_ACCESS', true);
 
 // Шляхи до файлів баз даних
 define('DB_PATH', '../database/');
@@ -25,7 +24,7 @@ define('SETTINGS_DB', DB_PATH . 'settings.json');
 
 // Налаштування безпеки
 define('ADMIN_USERNAME', 'admin');
-define('ADMIN_PASSWORD', 'paintyard2024'); // В реальному проекті використовуйте хешування!
+define('ADMIN_PASSWORD', 'malyarnyj2024'); // В реальному проекті використовуйте хешування!
 define('SESSION_TIMEOUT', 3600); // 1 година
 define('MAX_LOGIN_ATTEMPTS', 5);
 
@@ -50,7 +49,50 @@ define('MAX_BACKUPS', 30);
 // Функція для читання JSON файлу
 function readJsonFile($filePath) {
     if (!file_exists($filePath)) {
-        return ['error' => 'File not found: ' . $filePath];
+        // Створюємо базову структуру файлу якщо його немає
+        $defaultStructures = [
+            'products.json' => [
+                'products' => [],
+                'lastUpdated' => date('c'),
+                'totalProducts' => 0
+            ],
+            'articles.json' => [
+                'articles' => [],
+                'lastUpdated' => date('c'),
+                'totalArticles' => 0,
+                'publishedArticles' => 0,
+                'draftArticles' => 0
+            ],
+            'orders.json' => [
+                'orders' => [],
+                'orderStatistics' => [
+                    'total' => 0,
+                    'new' => 0,
+                    'processing' => 0,
+                    'completed' => 0,
+                    'cancelled' => 0,
+                    'totalRevenue' => 0,
+                    'averageOrderValue' => 0
+                ],
+                'lastUpdated' => date('c')
+            ]
+        ];
+        
+        $fileName = basename($filePath);
+        if (isset($defaultStructures[$fileName])) {
+            // Створюємо директорію якщо потрібно
+            $dir = dirname($filePath);
+            if (!is_dir($dir)) {
+                mkdir($dir, 0755, true);
+            }
+            
+            $defaultData = $defaultStructures[$fileName];
+            if (writeJsonFile($filePath, $defaultData)) {
+                return $defaultData;
+            }
+        }
+        
+        return ['error' => 'File not found and could not be created: ' . $filePath];
     }
     
     $content = file_get_contents($filePath);
@@ -60,7 +102,7 @@ function readJsonFile($filePath) {
     
     $data = json_decode($content, true);
     if (json_last_error() !== JSON_ERROR_NONE) {
-        return ['error' => 'Invalid JSON in file: ' . $filePath];
+        return ['error' => 'Invalid JSON in file: ' . $filePath . ' - ' . json_last_error_msg()];
     }
     
     return $data;
@@ -70,7 +112,14 @@ function readJsonFile($filePath) {
 function writeJsonFile($filePath, $data) {
     $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     if ($json === false) {
+        logAction('Failed to encode JSON for file: ' . $filePath, 'error');
         return false;
+    }
+    
+    // Створюємо директорію якщо потрібно
+    $dir = dirname($filePath);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
     }
     
     // Створюємо резервну копію перед записом
@@ -203,7 +252,7 @@ function validateRequired($data, $requiredFields) {
     $errors = [];
     
     foreach ($requiredFields as $field) {
-        if (!isset($data[$field]) || empty($data[$field])) {
+        if (!isset($data[$field]) || (is_string($data[$field]) && trim($data[$field]) === '')) {
             $errors[] = "Field '{$field}' is required";
         }
     }
@@ -217,7 +266,113 @@ function sanitizeData($data) {
         return array_map('sanitizeData', $data);
     }
     
-    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+    if (is_string($data)) {
+        return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+    }
+    
+    return $data;
+}
+
+// Функція валідації email
+function validateEmail($email) {
+    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+}
+
+// Функція валідації телефону (українські номери)
+function validatePhone($phone) {
+    // Очищуємо номер від всіх символів крім цифр і +
+    $cleanPhone = preg_replace('/[^\d+]/', '', $phone);
+    
+    // Перевіряємо формати українських номерів
+    $patterns = [
+        '/^\+380\d{9}$/',           // +380xxxxxxxxx
+        '/^380\d{9}$/',             // 380xxxxxxxxx  
+        '/^0\d{9}$/'                // 0xxxxxxxxx
+    ];
+    
+    foreach ($patterns as $pattern) {
+        if (preg_match($pattern, $cleanPhone)) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+// Функція нормалізації телефонного номера
+function normalizePhone($phone) {
+    $cleanPhone = preg_replace('/[^\d+]/', '', $phone);
+    
+    // Приводимо до формату +380xxxxxxxxx
+    if (preg_match('/^0(\d{9})$/', $cleanPhone, $matches)) {
+        return '+380' . $matches[1];
+    } elseif (preg_match('/^380(\d{9})$/', $cleanPhone, $matches)) {
+        return '+380' . $matches[1];
+    } elseif (preg_match('/^\+380\d{9}$/', $cleanPhone)) {
+        return $cleanPhone;
+    }
+    
+    return $phone; // Повертаємо оригінал якщо не вдалося нормалізувати
+}
+
+// Функція створення slug з тексту
+function createSlug($text) {
+    // Таблиця транслітерації українських символів
+    $transliteration = [
+        'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'h', 'ґ' => 'g', 'д' => 'd', 
+        'е' => 'e', 'є' => 'ye', 'ж' => 'zh', 'з' => 'z', 'и' => 'y', 'і' => 'i', 
+        'ї' => 'yi', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 
+        'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 
+        'ф' => 'f', 'х' => 'kh', 'ц' => 'ts', 'ч' => 'ch', 'ш' => 'sh', 
+        'щ' => 'shch', 'ь' => '', 'ю' => 'yu', 'я' => 'ya',
+        'А' => 'A', 'Б' => 'B', 'В' => 'V', 'Г' => 'H', 'Ґ' => 'G', 'Д' => 'D',
+        'Е' => 'E', 'Є' => 'Ye', 'Ж' => 'Zh', 'З' => 'Z', 'И' => 'Y', 'І' => 'I',
+        'Ї' => 'Yi', 'Й' => 'Y', 'К' => 'K', 'Л' => 'L', 'М' => 'M', 'Н' => 'N',
+        'О' => 'O', 'П' => 'P', 'Р' => 'R', 'С' => 'S', 'Т' => 'T', 'У' => 'U',
+        'Ф' => 'F', 'Х' => 'Kh', 'Ц' => 'Ts', 'Ч' => 'Ch', 'Ш' => 'Sh',
+        'Щ' => 'Shch', 'Ь' => '', 'Ю' => 'Yu', 'Я' => 'Ya'
+    ];
+    
+    // Транслітеруємо
+    $slug = strtr($text, $transliteration);
+    
+    // Приводимо до нижнього регістру
+    $slug = mb_strtolower($slug, 'UTF-8');
+    
+    // Замінюємо всі не-алфавітно-цифрові символи на дефіси
+    $slug = preg_replace('/[^a-z0-9]+/', '-', $slug);
+    
+    // Видаляємо повторювані дефіси
+    $slug = preg_replace('/-+/', '-', $slug);
+    
+    // Очищуємо дефіси з початку і кінця
+    $slug = trim($slug, '-');
+    
+    return $slug;
+}
+
+// Функція перевірки прав доступу (заглушка для майбутнього розвитку)
+function checkAccess($resource, $action = 'read') {
+    // В майбутньому тут буде повноцінна система прав доступу
+    return true;
+}
+
+// Функція отримання IP адреси клієнта
+function getClientIP() {
+    $ipKeys = ['HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'HTTP_CLIENT_IP', 'REMOTE_ADDR'];
+    
+    foreach ($ipKeys as $key) {
+        if (!empty($_SERVER[$key])) {
+            $ips = explode(',', $_SERVER[$key]);
+            $ip = trim($ips[0]);
+            
+            if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+                return $ip;
+            }
+        }
+    }
+    
+    return $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 }
 
 // Автоматичне налаштування при включенні файлу
@@ -227,7 +382,10 @@ validateCORS();
 ini_set('default_charset', 'UTF-8');
 mb_internal_encoding('UTF-8');
 
+// Налаштування часової зони
+date_default_timezone_set('Europe/Kiev');
+
 // Логуємо початок роботи API
-logAction('API initialized - ' . $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI']);
+logAction('API initialized - ' . $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . ' from ' . getClientIP());
 
 ?>
