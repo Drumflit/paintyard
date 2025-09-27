@@ -1,135 +1,52 @@
 {
   "products": [
     {
-      "id": 1001,
-      "name": "Teknos Aqua 3",
+      "id": 1,
+      "name": "Teknos Biora 7",
       "brand": "teknos",
-      "category": "interior",
-      "package": "2.7л",
-      "price": 1250.00,
-      "description": "Акрилова фарба для інтер'єру на водній основі. Легко наноситься, швидко сохне, не має різкого запаху. Ідеально підходить для житлових приміщень.",
-      "features": [
-        "Екологічно безпечна",
-        "Стійка до миття",
-        "Хороша укривність", 
-        "Швидке висихання",
-        "Без різкого запаху"
-      ],
-      "image": "assets/images/products/teknos-aqua3.jpg",
-      "inStock": true,
-      "quantity": 150,
-      "createdAt": "2024-09-20T10:00:00.000Z",
-      "updatedAt": "2024-09-26T14:30:00.000Z"
+      "price": 850,
+      "volume": "2.7л",
+      "date": "2024-01-15T10:00:00Z"
     },
     {
-      "id": 1002,
-      "name": "AURA Fasad Luxe",
-      "brand": "aura",
-      "category": "exterior",
-      "package": "10л",
-      "price": 2890.00,
-      "description": "Фасадна фарба преміум класу для зовнішніх робіт. Високоякісна, атмосферостійка, забезпечує тривалий захист будівлі.",
-      "features": [
-        "Стійкість до УФ",
-        "Морозостійкість",
-        "Довговічність 10+ років",
-        "Самоочищення",
-        "Еластичність покриття"
-      ],
-      "image": "assets/images/products/aura-fasad-luxe.jpg", 
-      "inStock": true,
-      "quantity": 75,
-      "createdAt": "2024-09-18T09:15:00.000Z",
-      "updatedAt": "2024-09-25T16:45:00.000Z"
-    },
-    {
-      "id": 1003,
-      "name": "Teknos Biora Balance",
+      "id": 2,
+      "name": "Teknos Futura 40",
       "brand": "teknos",
-      "category": "eco",
-      "package": "1л",
-      "price": 650.00,
-      "description": "Екологічна фарба для дитячих кімнат та спалень. Сертифікована безпека, гіпоалергенна формула без шкідливих речовин.",
-      "features": [
-        "100% екологічна",
-        "Гіпоалергенна",
-        "Дихаюча поверхня",
-        "Антибактеріальні добавки",
-        "Сертифікат Nordic Swan"
-      ],
-      "image": "assets/images/products/teknos-biora-balance.jpg",
-      "inStock": true,
-      "quantity": 200,
-      "createdAt": "2024-09-22T11:30:00.000Z",
-      "updatedAt": "2024-09-26T12:00:00.000Z"
+      "price": 1250,
+      "volume": "2.7л",
+      "date": "2024-01-15T10:00:00Z"
     },
     {
-      "id": 1004,
-      "name": "AURA Wood Protect",
+      "id": 3,
+      "name": "AURA Mattlatex",
       "brand": "aura",
-      "category": "wood",
-      "package": "2.5л",
-      "price": 980.00,
-      "description": "Захисний засіб для деревини. Універсальний імпрегнат для зовнішніх та внутрішніх робіт з деревом.",
-      "features": [
-        "Захист від вологи",
-        "Антисептичні властивості", 
-        "Збереження текстури дерева",
-        "УФ-фільтри",
-        "Глибоке проникнення"
-      ],
-      "image": "assets/images/products/aura-wood-protect.jpg",
-      "inStock": false,
-      "quantity": 0,
-      "createdAt": "2024-09-15T14:20:00.000Z",
-      "updatedAt": "2024-09-24T10:15:00.000Z"
+      "price": 450,
+      "volume": "5л",
+      "date": "2024-01-15T10:00:00Z"
     },
     {
-      "id": 1005,
-      "name": "Teknos Satu Saunasuoja",
-      "brand": "teknos", 
-      "category": "special",
-      "package": "2.7л",
-      "price": 2650.00,
-      "description": "Водорозчинний захисний засіб для дерев'яних поверхонь у сауні. Утворює покриття, що відштовхує бруд і воду, але водночас добре 'дихає'.",
-      "features": [
-        "Спеціально для саун",
-        "Водовідштовхувальні властивості",
-        "Дихаюча поверхня", 
-        "Захист від вологи та пару",
-        "Зберігає природний колір дерева"
-      ],
-      "image": "assets/images/products/teknos-satu.jpg",
-      "inStock": true,
-      "quantity": 25,
-      "createdAt": "2024-09-26T07:51:22.000Z",
-      "updatedAt": "2024-09-26T07:51:22.000Z"
-    },
-    {
-      "id": 1006,
-      "name": "AURA Econom",
+      "id": 4,
+      "name": "AURA Fasad Fort",
       "brand": "aura",
-      "category": "interior", 
-      "package": "3л",
-      "price": 890.00,
-      "description": "Економічна інтер'єрна фарба для внутрішніх робіт. Хороша якість за доступною ціною.",
-      "features": [
-        "Економічний варіант",
-        "Хороша укривність",
-        "Легке нанесення",
-        "Швидке висихання"
-      ],
-      "image": "assets/images/products/aura-econom.jpg",
-      "inStock": true,
-      "quantity": 120,
-      "createdAt": "2024-09-20T12:00:00.000Z",
-      "updatedAt": "2024-09-26T14:30:00.000Z"
+      "price": 680,
+      "volume": "10л",
+      "date": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": 5,
+      "name": "Teknos Saku",
+      "brand": "teknos",
+      "price": 1450,
+      "volume": "2.7л",
+      "date": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": 6,
+      "name": "AURA Interior",
+      "brand": "aura",
+      "price": 320,
+      "volume": "2.5л",
+      "date": "2024-01-15T10:00:00Z"
     }
-  ],
-  "lastUpdated": "2024-09-26T14:30:00.000Z",
-  "totalProducts": 6,
-  "inStockProducts": 5,
-  "outOfStockProducts": 1,
-  "brands": ["teknos", "aura"],
-  "categories": ["interior", "exterior", "eco", "wood", "special"]
+  ]
 }
