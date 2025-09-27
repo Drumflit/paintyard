@@ -3,49 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>МАЛЯРНИЙ - Професійні фарби Teknos та AURA в Івано-Франківську</title>
-    
-    <!-- Мета теги для SEO -->
-    <meta name="description" content="🎨 Якісні фарби Teknos (Фінляндія) та AURA (Україна) в Івано-Франківську. ✅ Професійні рішення для інтер'єру та екстер'єру. 🚚 Безкоштовна доставка від 2000 грн. ☎️ +380637702457">
-    <meta name="keywords" content="фарби івано-франківськ, teknos україна, aura фарба, фарба інтер'єрна, фасадна фарба, будівельні матеріали, малярний, фарби оптом, професійні фарби">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>МАЛЯРНИЙ - Фарби Teknos та AURA в Івано-Франківську</title>
     
     <style>
-        :root {
-            --primary-color: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: #60a5fa;
-            --secondary-color: #64748b;
-            --success-color: #16a34a;
-            --warning-color: #ea580c;
-            --danger-color: #dc2626;
-            --info-color: #0891b2;
-            
-            --white: #ffffff;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-400: #94a3b8;
-            --gray-500: #64748b;
-            --gray-600: #475569;
-            --gray-700: #334155;
-            --gray-800: #1e293b;
-            --gray-900: #0f172a;
-            
-            --teknos-color: #0066cc;
-            --aura-color: #ff6b35;
-            
-            --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --border-radius: 12px;
-            --border-radius-lg: 16px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -53,853 +13,495 @@
         }
 
         body {
-            font-family: var(--font-family-base);
+            font-family: Arial, sans-serif;
             line-height: 1.6;
-            color: var(--gray-800);
-            background: var(--gray-50);
-            overflow-x: hidden;
+            color: #333;
         }
 
-        /* === ЗАГОЛОВОК === */
-        .header {
-            background: var(--white);
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
         }
 
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            border-radius: var(--border-radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            box-shadow: var(--shadow);
-        }
-
-        .logo-text {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            letter-spacing: -1px;
-        }
-
-        .contact-section {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 0.5rem;
-        }
-
-        .schedule {
-            font-size: 0.9rem;
-            color: var(--gray-600);
+        .contacts {
             text-align: right;
         }
 
         .phone {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
             text-decoration: none;
-            transition: var(--transition);
         }
 
-        .phone:hover {
-            color: var(--primary-dark);
-            transform: scale(1.05);
+        /* Навігація */
+        nav {
+            background: #1d4ed8;
+            padding: 10px 0;
         }
 
-        /* === НАВІГАЦІЯ === */
-        .nav {
-            background: var(--primary-color);
-            padding: 0;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-        }
-
-        .nav-menu {
-            display: flex;
+        nav ul {
             list-style: none;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            display: block;
-            padding: 1rem 2rem;
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .nav-link:hover::before {
-            left: 100%;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        /* === ГОЛОВНА СЕКЦІЯ === */
-        .hero-section {
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
             display: flex;
-            align-items: center;
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="paint" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23paint)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .hero-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .hero-feature {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius);
-            backdrop-filter: blur(10px);
-        }
-
-        .hero-feature-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            gap: 30px;
         }
 
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+        }
+
+        /* Головний баннер */
+        .hero {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
         }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: var(--border-radius);
-            font-weight: 600;
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: #2563eb;
             text-decoration: none;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.3s;
         }
 
-        .btn-primary {
-            background: var(--white);
-            color: var(--primary-color);
-        }
-
-        .btn-primary:hover {
-            background: var(--gray-100);
+        .btn:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
         }
 
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-
-        .btn-outline:hover {
-            background: var(--white);
-            color: var(--primary-color);
-        }
-
-        /* === СЕКЦІЇ КОНТЕНТУ === */
+        /* Секції */
         .section {
-            padding: 5rem 0;
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
+            padding: 60px 0;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 1rem;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1d4ed8;
         }
 
-        .section-description {
-            font-size: 1.1rem;
-            color: var(--gray-600);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* === СЕКЦІЯ МАТЕРІАЛІВ === */
-        .materials-section {
-            background: var(--white);
-        }
-
-        .materials-grid {
+        /* Товари */
+        .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 30px;
+            margin-bottom: 40px;
         }
 
-        .material-card {
-            background: var(--gray-50);
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid var(--gray-200);
+        .product-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .material-card:hover {
+        .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        .material-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--gray-200), var(--gray-300));
+        .product-image {
+            width: 100px;
+            height: 100px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin: 0 auto 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: var(--gray-500);
-            position: relative;
+            font-size: 48px;
         }
 
-        .material-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: var(--white);
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
         }
 
-        .material-badge.teknos {
-            background: var(--teknos-color);
+        .product-brand {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
         }
 
-        .material-badge.aura {
-            background: var(--aura-color);
+        .product-price {
+            font-size: 24px;
+            color: #16a34a;
+            font-weight: bold;
         }
 
-        .material-content {
-            padding: 1.5rem;
-        }
-
-        .material-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--gray-900);
-        }
-
-        .material-description {
-            color: var(--gray-600);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .material-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .material-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .btn-sm {
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-        }
-
-        /* === СЕКЦІЯ СТАТЕЙ === */
-        .articles-section {
-            background: var(--gray-100);
-        }
-
+        /* Статті */
         .articles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            gap: 30px;
         }
 
         .article-card {
-            background: var(--white);
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .article-card:hover {
             transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .article-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--white);
-        }
-
-        .article-content {
-            padding: 1.5rem;
-        }
-
-        .article-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: var(--gray-500);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .article-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--gray-900);
-            line-height: 1.4;
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
         }
 
-        .article-excerpt {
-            color: var(--gray-600);
+        .article-date {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .article-content {
+            color: #666;
             line-height: 1.6;
-            margin-bottom: 1rem;
         }
 
-        /* === СЕКЦІЯ КОНТАКТІВ === */
-        .contacts-section {
-            background: var(--white);
+        /* Про нас */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.8;
+            font-size: 16px;
+            color: #555;
         }
 
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Контакти */
         .contacts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 30px;
+            margin-top: 40px;
         }
 
-        .contact-card {
+        .contact-block {
+            background: #f8f8f8;
+            padding: 30px;
+            border-radius: 10px;
             text-align: center;
-            padding: 2rem;
-            background: var(--gray-50);
-            border-radius: var(--border-radius-lg);
-            border: 1px solid var(--gray-200);
         }
 
         .contact-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--white);
-            margin: 0 auto 1.5rem;
+            font-size: 36px;
+            margin-bottom: 15px;
         }
 
         .contact-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--gray-900);
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
         }
 
         .contact-info {
-            color: var(--gray-600);
+            color: #666;
             line-height: 1.6;
         }
 
-        /* === ФУТЕР === */
-        .footer {
-            background: var(--gray-900);
-            color: var(--white);
+        /* Футер */
+        footer {
+            background: #333;
+            color: white;
             text-align: center;
-            padding: 2rem 0;
+            padding: 20px 0;
+            margin-top: 60px;
         }
 
-        .admin-link {
+        .admin-button {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            bottom: 20px;
+            right: 20px;
             width: 60px;
             height: 60px;
-            background: var(--warning-color);
+            background: #ea580c;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
+            color: white;
             text-decoration: none;
-            font-size: 1.5rem;
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition);
-            z-index: 999;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
         }
 
-        .admin-link:hover {
+        .admin-button:hover {
             transform: scale(1.1);
-            background: #d97706;
         }
 
-        /* === АДАПТИВНІСТЬ === */
+        /* Адаптивність */
         @media (max-width: 768px) {
-            .header-container {
+            .header-content {
                 flex-direction: column;
-                gap: 1rem;
                 text-align: center;
             }
 
-            .contact-section {
+            .contacts {
+                margin-top: 10px;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
                 align-items: center;
+                gap: 10px;
             }
 
-            .nav-menu {
-                flex-wrap: wrap;
-                justify-content: center;
+            .hero h1 {
+                font-size: 28px;
             }
 
-            .nav-link {
-                padding: 0.75rem 1rem;
-                font-size: 0.9rem;
+            .section-title {
+                font-size: 24px;
             }
 
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-features {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-cta {
-                justify-content: center;
-            }
-
-            .section {
-                padding: 3rem 0;
-            }
-
-            .section-container {
-                padding: 0 1rem;
-            }
-
-            .materials-grid,
+            .products-grid,
             .articles-grid,
             .contacts-grid {
                 grid-template-columns: 1fr;
             }
-
-            .admin-link {
-                width: 50px;
-                height: 50px;
-                bottom: 1rem;
-                right: 1rem;
-            }
-        }
-
-        /* === АНІМАЦІЇ === */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        /* === HIDDEN === */
-        .hidden {
-            display: none;
-        }
-
-        /* === LOADING === */
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 3rem;
-            color: var(--gray-500);
-        }
-
-        .loading-spinner {
-            width: 32px;
-            height: 32px;
-            border: 3px solid var(--gray-300);
-            border-top: 3px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 1rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <!-- === ЗАГОЛОВОК === -->
-    <header class="header">
-        <div class="header-container">
-            <div class="logo-section">
-                <div class="logo-icon">🎨</div>
-                <div class="logo-text">МАЛЯРНИЙ</div>
-            </div>
-            
-            <div class="contact-section">
-                <div class="schedule">
-                    Пн-Пт: 9:00-18:00, Сб: 9:00-15:00
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🎨 МАЛЯРНИЙ</div>
+                <div class="contacts">
+                    <div>Пн-Пт: 9:00-18:00, Сб: 9:00-15:00</div>
+                    <a href="tel:+380637702457" class="phone">📞 +380 63 770 24 57</a>
                 </div>
-                <a href="tel:+380637702457" class="phone">
-                    +380 63 770 24 57
-                </a>
             </div>
         </div>
     </header>
 
-    <!-- === НАВІГАЦІЯ === -->
-    <nav class="nav">
-        <div class="nav-container">
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link active" onclick="scrollToSection('home', this)">Головна</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#materials" class="nav-link" onclick="scrollToSection('materials', this)">Матеріали</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#articles" class="nav-link" onclick="scrollToSection('articles', this)">Статті</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contacts" class="nav-link" onclick="scrollToSection('contacts', this)">Контакти</a>
-                </li>
+    <!-- Навігація -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home">Головна</a></li>
+                <li><a href="#products">Товари</a></li>
+                <li><a href="#articles">Статті</a></li>
+                <li><a href="#about">Про нас</a></li>
+                <li><a href="#contacts">Контакти</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- === ГОЛОВНА СЕКЦІЯ === -->
-    <section id="home" class="hero-section">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Професійні фарби для вашого дому</h1>
-                <p class="hero-subtitle">
-                    Ми - офіційний дистриб'ютор якісних фарб Teknos (Фінляндія) та AURA (Україна) 
-                    в Івано-Франківську. Більше 7 років надаємо професійні рішення для інтер'єру та екстер'єру.
-                </p>
+    <!-- Головний баннер -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Професійні фарби Teknos та AURA</h1>
+            <p>Якісні фарби для інтер'єру та екстер'єру в Івано-Франківську.<br>
+            Офіційний дистриб'ютор з 2017 року.</p>
+            <a href="#products" class="btn">Переглянути товари</a>
+        </div>
+    </section>
+
+    <!-- Секція товарів -->
+    <section id="products" class="section">
+        <div class="container">
+            <h2 class="section-title">Наші товари</h2>
+            <div id="products-container" class="products-grid">
+                <!-- Товари будуть завантажені через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Секція статей -->
+    <section id="articles" class="section" style="background: #f8f8f8;">
+        <div class="container">
+            <h2 class="section-title">Корисні статті</h2>
+            <div id="articles-container" class="articles-grid">
+                <!-- Статті будуть завантажені через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Про нас -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Про нас</h2>
+            <div class="about-content">
+                <p>Магазин МАЛЯРНИЙ - це ваш надійний партнер у світі професійних фарб та лакофарбових матеріалів. 
+                Ми працюємо з 2017 року і є офіційним дистриб'ютором фінських фарб Teknos та українських фарб AURA 
+                в Івано-Франківську.</p>
                 
-                <div class="hero-features">
-                    <div class="hero-feature">
-                        <div class="hero-feature-icon">🏆</div>
-                        <div>
-                            <h3>500+ задоволених клієнтів</h3>
-                            <p>Довіра протягом 7 років</p>
-                        </div>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">🏆</div>
+                        <div class="feature-title">7 років досвіду</div>
+                        <p>Працюємо з 2017 року</p>
                     </div>
-                    <div class="hero-feature">
-                        <div class="hero-feature-icon">🚚</div>
-                        <div>
-                            <h3>Безкоштовна доставка</h3>
-                            <p>Від 2000 грн по всій Україні</p>
-                        </div>
+                    <div class="feature">
+                        <div class="feature-icon">✅</div>
+                        <div class="feature-title">Якість гарантована</div>
+                        <p>Тільки оригінальна продукція</p>
                     </div>
-                    <div class="hero-feature">
-                        <div class="hero-feature-icon">💬</div>
-                        <div>
-                            <h3>Безкоштовні консультації</h3>
-                            <p>Підбір кольорів та матеріалів</p>
-                        </div>
+                    <div class="feature">
+                        <div class="feature-icon">💡</div>
+                        <div class="feature-title">Консультації</div>
+                        <p>Допоможемо з вибором</p>
                     </div>
-                    <div class="hero-feature">
-                        <div class="hero-feature-icon">🎯</div>
-                        <div>
-                            <h3>100% оригінальна продукція</h3>
-                            <p>Офіційний дистриб'ютор</p>
-                        </div>
+                    <div class="feature">
+                        <div class="feature-icon">🚚</div>
+                        <div class="feature-title">Доставка</div>
+                        <p>По всій Україні</p>
                     </div>
-                </div>
-
-                <div class="hero-cta">
-                    <a href="#materials" class="btn btn-primary" onclick="scrollToSection('materials')">
-                        🛍️ Переглянути товари
-                    </a>
-                    <a href="tel:+380637702457" class="btn btn-outline">
-                        📞 Зателефонувати
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- === СЕКЦІЯ МАТЕРІАЛІВ === -->
-    <section id="materials" class="section materials-section">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Наші матеріали</h2>
-                <p class="section-description">
-                    Широкий асортимент професійних фарб від провідних європейських виробників
-                </p>
-            </div>
-
-            <div id="materials-grid" class="materials-grid">
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                    Завантаження товарів...
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- === СЕКЦІЯ СТАТЕЙ === -->
-    <section id="articles" class="section articles-section">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Корисні статті</h2>
-                <p class="section-description">
-                    Поради експертів, інструкції та останні новини світу фарб
-                </p>
-            </div>
-
-            <div id="articles-grid" class="articles-grid">
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                    Завантаження статей...
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- === СЕКЦІЯ КОНТАКТІВ === -->
-    <section id="contacts" class="section contacts-section">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Наші контакти</h2>
-                <p class="section-description">
-                    Зв'яжіться з нами будь-яким зручним способом
-                </p>
-            </div>
-
+    <!-- Контакти -->
+    <section id="contacts" class="section" style="background: #f8f8f8;">
+        <div class="container">
+            <h2 class="section-title">Контакти</h2>
             <div class="contacts-grid">
-                <div class="contact-card">
+                <div class="contact-block">
                     <div class="contact-icon">📍</div>
-                    <h3 class="contact-title">Наша адреса</h3>
+                    <h3 class="contact-title">Адреса</h3>
                     <div class="contact-info">
                         вул. Вовчинецька, 191<br>
-                        <small style="color: var(--gray-500);">Біля зупинки "Вовчинецька"</small>
+                        м. Івано-Франківськ
                     </div>
                 </div>
-
-                <div class="contact-card">
+                <div class="contact-block">
                     <div class="contact-icon">📞</div>
                     <h3 class="contact-title">Телефони</h3>
                     <div class="contact-info">
-                        <a href="tel:+380637702457" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">
-                            +380 63 770 24 57
-                        </a><br>
-                        <small style="color: var(--gray-500);">Основний (Viber, Telegram)</small><br><br>
-                        <a href="tel:+380687702457" style="color: var(--gray-600); text-decoration: none;">
-                            +380 68 770 24 57
-                        </a><br>
-                        <small style="color: var(--gray-500);">Додатковий</small>
+                        +380 63 770 24 57<br>
+                        +380 68 770 24 57
                     </div>
                 </div>
-
-                <div class="contact-card">
+                <div class="contact-block">
                     <div class="contact-icon">⏰</div>
-                    <h3 class="contact-title">Робочі години</h3>
+                    <h3 class="contact-title">Графік роботи</h3>
                     <div class="contact-info">
-                        <strong>Понеділок - П'ятниця:</strong><br>
-                        9:00 - 18:00<br><br>
-                        <strong>Субота:</strong><br>
-                        9:00 - 15:00<br><br>
-                        <strong>Неділя:</strong><br>
-                        Вихідний<br><br>
-                        <small style="color: var(--gray-500);">* Консультації по телефону до 19:00</small>
+                        Пн-Пт: 9:00 - 18:00<br>
+                        Сб: 9:00 - 15:00<br>
+                        Нд: Вихідний
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- === ФУТЕР === -->
-    <footer class="footer">
-        <div class="section-container">
+    <!-- Футер -->
+    <footer>
+        <div class="container">
             <p>&copy; 2024 МАЛЯРНИЙ. Всі права захищені.</p>
-            <p style="margin-top: 0.5rem; color: var(--gray-400); font-size: 0.9rem;">
-                Офіційний дистриб'ютор Teknos та AURA в Івано-Франківську
-            </p>
         </div>
     </footer>
 
-    <!-- === КНОПКА АДМІНА === -->
-    <a href="admin.html" class="admin-link" title="Адмін-панель">
-        ⚙️
-    </a>
+    <!-- Кнопка адмін-панелі -->
+    <a href="admin.html" class="admin-button" title="Адмін-панель">⚙️</a>
 
-    <!-- JavaScript -->
     <script>
-        // Глобальні змінні
-        let allProducts = [];
-        let allArticles = [];
-
-        // Ініціалізація при завантаженні сторінки
-        document.addEventListener('DOMContentLoaded', function() {
-            loadData();
-            setupScrollEffects();
-        });
-
-        // Завантаження даних
-        async function loadData() {
-            try {
-                await Promise.all([
-                    loadProducts(),
-                    loadArticles()
-                ]);
-            } catch (error) {
-                console.error('Помилка завантаження даних:', error);
-                showErrorState();
-            }
-        }
-
         // Завантаження товарів
         async function loadProducts() {
             try {
                 const response = await fetch('database/products.json');
-                if (!response.ok) throw new Error('Помилка завантаження товарів');
-                
                 const data = await response.json();
-                allProducts = data.products || [];
-                renderProducts();
+                const container = document.getElementById('products-container');
+                
+                if (data.products && data.products.length > 0) {
+                    container.innerHTML = data.products.slice(0, 6).map(product => `
+                        <div class="product-card">
+                            <div class="product-image">🎨</div>
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-brand">${product.brand.toUpperCase()}</div>
+                            <div class="product-price">${product.price} грн</div>
+                        </div>
+                    `).join('');
+                } else {
+                    container.innerHTML = '<p style="text-align: center; color: #999;">Товари будуть додані незабаром</p>';
+                }
             } catch (error) {
                 console.error('Помилка завантаження товарів:', error);
-                document.getElementById('materials-grid').innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
-                        <p style="color: var(--gray-500);">Товари тимчасово недоступні</p>
-                    </div>
-                `;
+                document.getElementById('products-container').innerHTML = 
+                    '<p style="text-align: center; color: #999;">Товари будуть додані незабаром</p>';
             }
         }
 
@@ -907,250 +509,43 @@
         async function loadArticles() {
             try {
                 const response = await fetch('database/articles.json');
-                if (!response.ok) throw new Error('Помилка завантаження статей');
-                
                 const data = await response.json();
-                allArticles = data.articles?.filter(article => article.status ===
-                  .hero {
-            text-align: center;
-            padding: 4rem 0;
-            background: white;
-            border-radius: 10px;
-            margin: 2rem 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            font-weight: 600;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .product-card h3 {
-            color: #333;
-            margin-bottom: 1rem;
-        }
-
-        .product-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .features {
-            background: white;
-            padding: 3rem 0;
-            margin: 3rem 0;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .feature-item {
-            padding: 1.5rem;
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .products {
-                grid-template-columns: 1fr;
+                const container = document.getElementById('articles-container');
+                
+                if (data.articles && data.articles.length > 0) {
+                    container.innerHTML = data.articles.slice(0, 3).map(article => `
+                        <div class="article-card">
+                            <h3 class="article-title">${article.title}</h3>
+                            <div class="article-date">${new Date(article.date).toLocaleDateString('uk-UA')}</div>
+                            <div class="article-content">${article.content.substring(0, 150)}...</div>
+                        </div>
+                    `).join('');
+                } else {
+                    container.innerHTML = '<p style="text-align: center; color: #999;">Статті будуть додані незабаром</p>';
+                }
+            } catch (error) {
+                console.error('Помилка завантаження статей:', error);
+                document.getElementById('articles-container').innerHTML = 
+                    '<p style="text-align: center; color: #999;">Статті будуть додані незабаром</p>';
             }
         }
-    </style>
-</head>
-<body>
-    <header>
-        <nav class="container">
-            <div class="logo">PaintYard</div>
-            <ul>
-                <li><a href="#home">Головна</a></li>
-                <li><a href="#products">Продукція</a></li>
-                <li><a href="#about">Про нас</a></li>
-                <li><a href="#contact">Контакти</a></li>
-                <li><a href="admin.html">Адмін</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main class="container">
-        <section id="home" class="hero">
-            <h1>PaintYard - Ваш надійний партнер</h1>
-            <p>Професійні лакофарбові матеріали Teknos та AURA для всіх ваших потреб</p>
-            <a href="#products" class="btn">Переглянути продукцію</a>
-        </section>
-
-        <section id="products" class="products">
-            <div class="product-card">
-                <h3>🎨 Фарби Teknos</h3>
-                <p>Високоякісні фінські фарби для інтер'єру та екстер'єру. Екологічно чисті, довговічні та стійкі до вигорання.</p>
-            </div>
-            
-            <div class="product-card">
-                <h3>🏠 Фарби AURA</h3>
-                <p>Українські фарби преміум класу. Відмінна покривність, легкість нанесення та широка кольорова палітра.</p>
-            </div>
-            
-            <div class="product-card">
-                <h3>🔧 Допоміжні матеріали</h3>
-                <p>Грунтовки, шпаклівки, інструменти та все необхідне для професійного малярства.</p>
-            </div>
-        </section>
-
-        <section id="about" class="features">
-            <div class="container">
-                <h2 style="text-align: center; margin-bottom: 3rem;">Чому обирають нас?</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">✅</div>
-                        <h3>Якість гарантована</h3>
-                        <p>Працюємо тільки з перевіреними брендами та надаємо гарантію на всю продукцію</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <div class="feature-icon">🚚</div>
-                        <h3>Швидка доставка</h3>
-                        <p>Доставка по всій Україні протягом 1-3 робочих днів</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <div class="feature-icon">💡</div>
-                        <h3>Професійна консультація</h3>
-                        <p>Наші експерти допоможуть підібрати оптимальне рішення для вашого проекту</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <div class="feature-icon">💰</div>
-                        <h3>Вигідні ціни</h3>
-                        <p>Прямі поставки від виробників дозволяють тримати конкурентні ціни</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" style="background: white; padding: 3rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
-            <h2>Контакти</h2>
-            <p>📞 Телефон: +380 (xx) xxx-xx-xx</p>
-            <p>📧 Email: info@paintyard.ua</p>
-            <p>📍 Адреса: м. Київ, вул. Малярна, 15</p>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 PaintYard. Усі права захищені.</p>
-        </div>
-    </footer>
-
-    <script>
         // Плавне прокручування до секцій
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
 
-        // Анімація появи карток при скролі
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Застосовуємо анімацію до карток
-        document.querySelectorAll('.product-card, .feature-item').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
+        // Завантаження даних при завантаженні сторінки
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+            loadArticles();
         });
-
-        console.log('🎨 PaintYard website loaded successfully!');
     </script>
 </body>
 </html>
