@@ -22,16 +22,80 @@
             --gray-100: #f8fafc;
             --gray-200: #e2e8f0;
             --gray-300: #cbd5e1;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
             --gray-800: #1e293b;
             --gray-900: #0f172a;
+            --white: #ffffff;
             --border-radius: 8px;
             --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--gray-100);
             min-height: 100vh;
+        }
+
+        /* Екран входу */
+        .login-screen {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .login-container {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .login-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        /* Основна адмін-панель */
+        .admin-screen {
+            display: none;
+        }
+
+        .admin-screen.active {
+            display: block;
         }
 
         /* Заголовок адміна */
@@ -58,7 +122,7 @@
             margin-bottom: 1rem;
         }
 
-        .logo {
+        .admin-logo {
             display: flex;
             align-items: center;
             gap: 0.75rem;
@@ -83,6 +147,7 @@
             transition: background 0.2s;
             white-space: nowrap;
             font-size: 0.9rem;
+            cursor: pointer;
         }
 
         .admin-nav-link:hover,
@@ -361,6 +426,40 @@
             gap: 1rem;
         }
 
+        /* Сповіщення */
+        .notification {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            color: white;
+            font-weight: 500;
+            z-index: 9999;
+            max-width: 400px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .notification.success { background: var(--success-color); }
+        .notification.error { background: var(--danger-color); }
+        .notification.warning { background: var(--warning-color); }
+        .notification.info { background: var(--primary-color); }
+
+        /* Статуси */
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-new { background: rgba(59, 130, 246, 0.1); color: #1d4ed8; }
+        .status-processing { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+        .status-completed { background: rgba(34, 197, 94, 0.1); color: #059669; }
+        .status-cancelled { background: rgba(239, 68, 68, 0.1); color: #dc2626; }
+        .status-published { background: rgba(34, 197, 94, 0.1); color: #059669; }
+        .status-draft { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-container {
@@ -405,199 +504,220 @@
         .mt-1 { margin-top: 0.5rem; }
         .mb-2 { margin-bottom: 1rem; }
         .p-1 { padding: 0.5rem; }
-
-        .status-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .status-new { background: rgba(59, 130, 246, 0.1); color: #1d4ed8; }
-        .status-processing { background: rgba(245, 158, 11, 0.1); color: #d97706; }
-        .status-completed { background: rgba(34, 197, 94, 0.1); color: #059669; }
-        .status-cancelled { background: rgba(239, 68, 68, 0.1); color: #dc2626; }
-        .status-published { background: rgba(34, 197, 94, 0.1); color: #059669; }
-        .status-draft { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
-    <!-- Заголовок адміна -->
-    <header class="admin-header">
-        <div class="nav-container">
-            <div class="nav-top">
+    <!-- Екран входу -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
                 <div class="logo">
-                    ⚙️ МАЛЯРНИЙ Admin
+                    <div class="logo-icon">🎨</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--gray-900);">МАЛЯРНИЙ</div>
                 </div>
-                <button class="btn btn-secondary btn-small" onclick="logout()">🚪 Вихід</button>
+                <h1 class="login-title">Вхід в адмін-панель</h1>
             </div>
 
-            <nav class="admin-nav">
-                <a href="#" class="admin-nav-link active" onclick="showSection('dashboard')">📊 Панель</a>
-                <a href="#" class="admin-nav-link" onclick="showSection('products')">🛍️ Товари</a>
-                <a href="#" class="admin-nav-link" onclick="showSection('articles')">📝 Статті</a>
-                <a href="#" class="admin-nav-link" onclick="showSection('orders')">📦 Замовлення</a>
-                <a href="index.html" class="admin-nav-link">🏠 На сайт</a>
-            </nav>
+            <form id="login-form">
+                <div class="form-group">
+                    <label class="form-label" for="username">Логін</label>
+                    <input type="text" id="username" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Пароль</label>
+                    <input type="password" id="password" class="form-input" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    🔐 Увійти
+                </button>
+            </form>
+
+            <div id="login-error" class="text-danger text-center mt-1" style="display: none;"></div>
         </div>
-    </header>
+    </div>
 
-    <!-- Основний контент -->
-    <main class="admin-content">
-        
-        <!-- ПАНЕЛЬ УПРАВЛІННЯ -->
-        <section id="dashboard-section" class="admin-section active">
-            <div class="section-header">
-                <h1 class="section-title">Панель управління</h1>
+    <!-- Основна адмін-панель -->
+    <div id="admin-screen" class="admin-screen">
+        <!-- Заголовок адміна -->
+        <header class="admin-header">
+            <div class="nav-container">
+                <div class="nav-top">
+                    <div class="admin-logo">
+                        ⚙️ МАЛЯРНИЙ Admin
+                    </div>
+                    <button class="btn btn-secondary btn-small" onclick="logout()">🚪 Вихід</button>
+                </div>
+
+                <nav class="admin-nav">
+                    <a class="admin-nav-link active" onclick="showSection('dashboard')">📊 Панель</a>
+                    <a class="admin-nav-link" onclick="showSection('products')">🛍️ Товари</a>
+                    <a class="admin-nav-link" onclick="showSection('articles')">📝 Статті</a>
+                    <a class="admin-nav-link" onclick="showSection('orders')">📦 Замовлення</a>
+                    <a href="index.html" class="admin-nav-link">🏠 На сайт</a>
+                </nav>
             </div>
+        </header>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number" id="total-products">0</div>
-                    <div class="stat-label">Всього товарів</div>
+        <!-- Основний контент -->
+        <main class="admin-content">
+            
+            <!-- ПАНЕЛЬ УПРАВЛІННЯ -->
+            <section id="dashboard-section" class="admin-section active">
+                <div class="section-header">
+                    <h1 class="section-title">Панель управління</h1>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="total-articles">0</div>
-                    <div class="stat-label">Всього статей</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="total-orders">0</div>
-                    <div class="stat-label">Всього замовлень</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="pending-orders">0</div>
-                    <div class="stat-label">Нові замовлення</div>
-                </div>
-            </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Швидкі дії</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-products">0</div>
+                        <div class="stat-label">Всього товарів</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-articles">0</div>
+                        <div class="stat-label">Всього статей</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-orders">0</div>
+                        <div class="stat-label">Всього замовлень</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="pending-orders">0</div>
+                        <div class="stat-label">Нові замовлення</div>
+                    </div>
                 </div>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Швидкі дії</h3>
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="showAddProductModal()">➕ Додати товар</button>
+                        <button class="btn btn-primary" onclick="showAddArticleModal()">➕ Додати статтю</button>
+                        <button class="btn btn-secondary" onclick="exportData()">📥 Експорт даних</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ТОВАРИ -->
+            <section id="products-section" class="admin-section">
+                <div class="section-header">
+                    <h1 class="section-title">Управління товарами</h1>
                     <button class="btn btn-primary" onclick="showAddProductModal()">➕ Додати товар</button>
-                    <button class="btn btn-primary" onclick="showAddArticleModal()">➕ Додати статтю</button>
-                    <button class="btn btn-secondary" onclick="exportData()">📥 Експорт даних</button>
                 </div>
-            </div>
-        </section>
 
-        <!-- ТОВАРИ -->
-        <section id="products-section" class="admin-section">
-            <div class="section-header">
-                <h1 class="section-title">Управління товарами</h1>
-                <button class="btn btn-primary" onclick="showAddProductModal()">➕ Додати товар</button>
-            </div>
+                <div class="filters-container">
+                    <input type="text" class="form-input search-input" placeholder="🔍 Пошук товарів..." onkeyup="filterProducts()" id="product-search">
+                    <select class="form-select" onchange="filterProducts()" id="product-brand-filter">
+                        <option value="">Всі бренди</option>
+                        <option value="teknos">Teknos</option>
+                        <option value="aura">AURA</option>
+                    </select>
+                    <select class="form-select" onchange="filterProducts()" id="product-category-filter">
+                        <option value="">Всі категорії</option>
+                        <option value="interior">Інтер'єр</option>
+                        <option value="exterior">Екстер'єр</option>
+                        <option value="wood">Для дерева</option>
+                        <option value="eco">Еко-фарби</option>
+                        <option value="special">Спеціальні</option>
+                    </select>
+                </div>
 
-            <div class="filters-container">
-                <input type="text" class="form-input search-input" placeholder="🔍 Пошук товарів..." onkeyup="filterProducts()" id="product-search">
-                <select class="form-select" onchange="filterProducts()" id="product-brand-filter">
-                    <option value="">Всі бренди</option>
-                    <option value="teknos">Teknos</option>
-                    <option value="aura">AURA</option>
-                </select>
-                <select class="form-select" onchange="filterProducts()" id="product-category-filter">
-                    <option value="">Всі категорії</option>
-                    <option value="interior">Інтер'єр</option>
-                    <option value="exterior">Екстер'єр</option>
-                    <option value="wood">Для дерева</option>
-                    <option value="eco">Еко-фарби</option>
-                    <option value="special">Спеціальні</option>
-                </select>
-            </div>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Назва</th>
+                                <th>Бренд</th>
+                                <th>Категорія</th>
+                                <th>Ціна</th>
+                                <th>Наявність</th>
+                                <th>Дії</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table-body">
+                            <!-- Тут будуть товари -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Назва</th>
-                            <th>Бренд</th>
-                            <th>Категорія</th>
-                            <th>Ціна</th>
-                            <th>Наявність</th>
-                            <th>Дії</th>
-                        </tr>
-                    </thead>
-                    <tbody id="products-table-body">
-                        <!-- Тут будуть товари -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
+            <!-- СТАТТІ -->
+            <section id="articles-section" class="admin-section">
+                <div class="section-header">
+                    <h1 class="section-title">Управління статтями</h1>
+                    <button class="btn btn-primary" onclick="showAddArticleModal()">➕ Додати статтю</button>
+                </div>
 
-        <!-- СТАТТІ -->
-        <section id="articles-section" class="admin-section">
-            <div class="section-header">
-                <h1 class="section-title">Управління статтями</h1>
-                <button class="btn btn-primary" onclick="showAddArticleModal()">➕ Додати статтю</button>
-            </div>
+                <div class="filters-container">
+                    <input type="text" class="form-input search-input" placeholder="🔍 Пошук статей..." onkeyup="filterArticles()" id="article-search">
+                    <select class="form-select" onchange="filterArticles()" id="article-status-filter">
+                        <option value="">Всі статуси</option>
+                        <option value="published">Опубліковано</option>
+                        <option value="draft">Чернетка</option>
+                    </select>
+                </div>
 
-            <div class="filters-container">
-                <input type="text" class="form-input search-input" placeholder="🔍 Пошук статей..." onkeyup="filterArticles()" id="article-search">
-                <select class="form-select" onchange="filterArticles()" id="article-status-filter">
-                    <option value="">Всі статуси</option>
-                    <option value="published">Опубліковано</option>
-                    <option value="draft">Чернетка</option>
-                </select>
-            </div>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Заголовок</th>
+                                <th>Автор</th>
+                                <th>Статус</th>
+                                <th>Дата</th>
+                                <th>Дії</th>
+                            </tr>
+                        </thead>
+                        <tbody id="articles-table-body">
+                            <!-- Тут будуть статті -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Заголовок</th>
-                            <th>Автор</th>
-                            <th>Статус</th>
-                            <th>Дата</th>
-                            <th>Дії</th>
-                        </tr>
-                    </thead>
-                    <tbody id="articles-table-body">
-                        <!-- Тут будуть статті -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
+            <!-- ЗАМОВЛЕННЯ -->
+            <section id="orders-section" class="admin-section">
+                <div class="section-header">
+                    <h1 class="section-title">Управління замовленнями</h1>
+                </div>
 
-        <!-- ЗАМОВЛЕННЯ -->
-        <section id="orders-section" class="admin-section">
-            <div class="section-header">
-                <h1 class="section-title">Управління замовленнями</h1>
-            </div>
+                <div class="filters-container">
+                    <input type="text" class="form-input search-input" placeholder="🔍 Пошук замовлень..." onkeyup="filterOrders()" id="order-search">
+                    <select class="form-select" onchange="filterOrders()" id="order-status-filter">
+                        <option value="">Всі статуси</option>
+                        <option value="new">Нові</option>
+                        <option value="processing">В обробці</option>
+                        <option value="completed">Завершені</option>
+                        <option value="cancelled">Скасовані</option>
+                    </select>
+                </div>
 
-            <div class="filters-container">
-                <input type="text" class="form-input search-input" placeholder="🔍 Пошук замовлень..." onkeyup="filterOrders()" id="order-search">
-                <select class="form-select" onchange="filterOrders()" id="order-status-filter">
-                    <option value="">Всі статуси</option>
-                    <option value="new">Нові</option>
-                    <option value="processing">В обробці</option>
-                    <option value="completed">Завершені</option>
-                    <option value="cancelled">Скасовані</option>
-                </select>
-            </div>
-
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>№ Замовлення</th>
-                            <th>Клієнт</th>
-                            <th>Телефон</th>
-                            <th>Сума</th>
-                            <th>Статус</th>
-                            <th>Дата</th>
-                            <th>Дії</th>
-                        </tr>
-                    </thead>
-                    <tbody id="orders-table-body">
-                        <!-- Тут будуть замовлення -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>№ Замовлення</th>
+                                <th>Клієнт</th>
+                                <th>Телефон</th>
+                                <th>Сума</th>
+                                <th>Статус</th>
+                                <th>Дата</th>
+                                <th>Дії</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table-body">
+                            <!-- Тут будуть замовлення -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <!-- МОДАЛЬНІ ВІКНА -->
     <!-- Модальне вікно додавання товару -->
@@ -715,14 +835,113 @@
         let allProducts = [];
         let allArticles = [];
         let allOrders = [];
+        let isLoggedIn = false;
 
-        // Ініціалізація
+        // Налаштування входу (базові дані для демонстрації)
+        const ADMIN_CREDENTIALS = {
+            username: 'admin',
+            password: 'malyarnyj2024'
+        };
+
+        // Ініціалізація при завантаженні сторінки
         document.addEventListener('DOMContentLoaded', function() {
-            loadAllData();
+            checkAuthStatus();
+            setupEventListeners();
         });
+
+        // Перевірка статусу автентифікації
+        function checkAuthStatus() {
+            const savedAuth = localStorage.getItem('admin_logged_in');
+            const authExpiry = localStorage.getItem('admin_auth_expiry');
+            
+            if (savedAuth === 'true' && authExpiry && Date.now() < parseInt(authExpiry)) {
+                showAdminPanel();
+            } else {
+                showLoginScreen();
+            }
+        }
+
+        // Налаштування слухачів подій
+        function setupEventListeners() {
+            const loginForm = document.getElementById('login-form');
+            loginForm.addEventListener('submit', handleLogin);
+
+            // Закриття модальних вікон по Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal.active').forEach(modal => {
+                        modal.classList.remove('active');
+                    });
+                }
+            });
+
+            // Закриття модальних вікон по кліку поза ними
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('modal')) {
+                    e.target.classList.remove('active');
+                }
+            });
+        }
+
+        // Обробка входу в систему
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('login-error');
+
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                // Успішний вхід
+                const expiryTime = Date.now() + (2 * 60 * 60 * 1000); // 2 години
+                localStorage.setItem('admin_logged_in', 'true');
+                localStorage.setItem('admin_auth_expiry', expiryTime.toString());
+                
+                showAdminPanel();
+                loadAllData();
+            } else {
+                // Невдалий вхід
+                errorDiv.textContent = 'Невірний логін або пароль';
+                errorDiv.style.display = 'block';
+                
+                // Очищуємо пароль
+                document.getElementById('password').value = '';
+            }
+        }
+
+        // Показ екрану входу
+        function showLoginScreen() {
+            document.getElementById('login-screen').style.display = 'flex';
+            document.getElementById('admin-screen').classList.remove('active');
+            isLoggedIn = false;
+        }
+
+        // Показ адмін-панелі
+        function showAdminPanel() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('admin-screen').classList.add('active');
+            isLoggedIn = true;
+            loadAllData();
+        }
+
+        // Вихід з системи
+        function logout() {
+            if (confirm('Ви впевнені, що хочете вийти з адмін-панелі?')) {
+                localStorage.removeItem('admin_logged_in');
+                localStorage.removeItem('admin_auth_expiry');
+                showLoginScreen();
+                
+                // Очищуємо форму входу
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('login-error').style.display = 'none';
+            }
+        }
 
         // Завантаження всіх даних
         async function loadAllData() {
+            if (!isLoggedIn) return;
+            
             try {
                 await Promise.all([
                     loadProducts(),
@@ -745,6 +964,7 @@
                 renderProducts();
             } catch (error) {
                 console.error('Помилка завантаження товарів:', error);
+                allProducts = [];
             }
         }
 
@@ -757,6 +977,7 @@
                 renderArticles();
             } catch (error) {
                 console.error('Помилка завантаження статей:', error);
+                allArticles = [];
             }
         }
 
@@ -769,6 +990,7 @@
                 renderOrders();
             } catch (error) {
                 console.error('Помилка завантаження замовлень:', error);
+                allOrders = [];
             }
         }
 
@@ -1141,38 +1363,27 @@
             }
         }
 
-        // Вихід з системи
-        function logout() {
-            if (confirm('Ви впевнені, що хочете вийти з адмін-панелі?')) {
-                window.location.href = 'index.html';
-            }
-        }
-
         // Показ повідомлень
         function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                color: white;
-                font-weight: 500;
-                z-index: 9999;
-                max-width: 400px;
-                box-shadow: var(--shadow);
-            `;
+            // Видаляємо попередні повідомлення
+            document.querySelectorAll('.notification').forEach(n => n.remove());
             
-            const colors = {
-                success: '#16a34a',
-                error: '#dc2626',
-                warning: '#ea580c',
-                info: '#2563eb'
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            const icons = {
+                success: '✅',
+                error: '❌',
+                warning: '⚠️',
+                info: 'ℹ️'
             };
             
-            notification.style.backgroundColor = colors[type] || colors.info;
-            notification.textContent = message;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span>${icons[type] || icons.info}</span>
+                    <span>${message}</span>
+                </div>
+            `;
             
             document.body.appendChild(notification);
             
@@ -1181,21 +1392,31 @@
             }, 5000);
         }
 
-        // Закриття модальних вікон по Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal.active').forEach(modal => {
-                    modal.classList.remove('active');
-                });
+        // Автоматичне оновлення даних
+        setInterval(async function() {
+            if (!isLoggedIn) return;
+            
+            try {
+                const response = await fetch('database/products.json');
+                const data = await response.json();
+                
+                if (data.lastUpdated && new Date(data.lastUpdated) > new Date(allProducts.lastUpdated || 0)) {
+                    console.log('Виявлено оновлення даних, перезавантажуємо...');
+                    await loadAllData();
+                }
+            } catch (error) {
+                // Ігноруємо помилки автоматичного оновлення
             }
-        });
+        }, 30000); // Перевіряти кожні 30 секунд
 
-        // Закриття модальних вікон по кліку поза ними
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('modal')) {
-                e.target.classList.remove('active');
+        // Перевірка активності сесії
+        setInterval(() => {
+            const authExpiry = localStorage.getItem('admin_auth_expiry');
+            if (authExpiry && Date.now() > parseInt(authExpiry)) {
+                showNotification('Сесія завершена. Потрібно увійти знову.', 'warning');
+                logout();
             }
-        });
+        }, 60000); // Перевіряти кожну хвилину
 
         console.log('🎨 Адмін-панель МАЛЯРНИЙ завантажено успішно!');
     </script>
